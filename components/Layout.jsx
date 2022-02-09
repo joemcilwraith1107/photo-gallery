@@ -6,7 +6,7 @@ export default function Layout({ children }) {
         <div className="flex flex-col h-screen justify-between">
             <Head></Head>
 
-            <main className="flex-initial">{children}</main>
+            <main className="basis-11/12 shrink">{children}</main>
 
             <Footer />
         </div>

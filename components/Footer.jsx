@@ -3,7 +3,7 @@ import { faInstagram, faFlickr} from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
     return (
-        <footer className="max-w-full container flex-none h-auto p-1 bg-gray-600">
+        <footer className="max-w-full flex-none basis-1/12 p-1 bg-gray-600">
             <div className="flex flex-row-reverse flex-none">
                 <div className="p-4">
                     <a href="https://www.flickr.com/photos/azima_97" target="_blank" rel="noreferrer">
