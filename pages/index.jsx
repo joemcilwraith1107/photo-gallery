@@ -1,15 +1,15 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import ImagePreview from '../components/ImagePreview';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
+import Filters from '../components/Filters';
 
 export default function Home({ items, tags }) {
   const [filter, setFilter] = useState("");
   const [photos, setPhotos] = useState(items);
   return (
-    <div className="flex flex-col h-screen justify-between">
-      <Header
+    <Layout>
+      <Filters
         tags={tags}
       />
 
@@ -24,12 +24,7 @@ export default function Home({ items, tags }) {
           ))}
         </div>
       </div>
-
-
-      <Footer />
-
-
-    </div>
+    </Layout>
   )
 }
 
