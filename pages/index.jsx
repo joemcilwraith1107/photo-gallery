@@ -11,6 +11,7 @@ export default function Home({ items, tags }) {
     <Layout>
       <Filters
         tags={tags}
+        setPhotos={setPhotos}
       />
 
       <div className="container mx-auto mb-4">
