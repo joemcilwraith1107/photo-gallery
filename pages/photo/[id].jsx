@@ -54,7 +54,7 @@ export default function photo({ photo, caption }) {
                 <div className="flex flex-row justify-center basis-1/12">
                     <div className="flex flex-none basis-1/12 justify-center"></div>
                     <div className="flex basis-11/12 justify-center self-center">
-                        <p className="text-lg">
+                        <p className="font-sans text-lg">
                             {caption}
                         </p>
                     </div>
