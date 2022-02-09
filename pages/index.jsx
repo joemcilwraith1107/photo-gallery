@@ -30,9 +30,9 @@ export default function Home({ items, tags }) {
 }
 
 export async function getStaticProps () {
-  const results = await fetch(`${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`, {
+  const results = await fetch(`${process.env.NEXT_PUBLIC_IK_API}?path=Portfolio&sort=DESC_NAME`, {
     headers: {
-      Authorization: `${process.env.PRIVATE_HEADER}`
+      Authorization: `${process.env.NEXT_PUBLIC_PRIVATE_HEADER}`
     }
   });
   const items = await results.json();
