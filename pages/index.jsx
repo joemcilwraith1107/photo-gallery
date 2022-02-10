@@ -16,7 +16,7 @@ export default function Home({ items, tags }) {
       />
 
       <div className="container mx-auto mb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
+        <div className="flex flex-row flex-wrap justify-center">
           {photos && photos.map((preview) => (
             <ImagePreview
               key={preview.fileId}
