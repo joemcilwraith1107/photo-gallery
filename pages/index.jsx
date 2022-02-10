@@ -10,7 +10,9 @@ export default function Home({ items, tags }) {
   return (
     <Layout>
       <Filters
+        items={items}
         tags={tags}
+        setPhotos={setPhotos}
       />
 
       <div className="container mx-auto mb-4">
@@ -28,7 +30,7 @@ export default function Home({ items, tags }) {
   )
 }
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const results = await fetch(`${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`, {
     headers: {
       Authorization: `${process.env.PRIVATE_HEADER}`
@@ -38,13 +40,13 @@ export async function getStaticProps () {
   const filters = async (items) => {
     let array = ["all"];
     items.forEach((item) => {
-        let tags = item.tags;
-        if (tags == null) {
-            console.log('Untagged picture');
-        }
-        for (let tag of tags) {
-            array.push(tag);
-        }
+      let tags = item.tags;
+      if (tags == null) {
+        console.log('Untagged picture');
+      }
+      for (let tag of tags) {
+        array.push(tag);
+      }
     });
     return [...new Set(array)];
   };
