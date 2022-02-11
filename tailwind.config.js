@@ -8,13 +8,22 @@ module.exports = {
       padding: {
         '1/1': '100%',
       },
-      gridTemplateColumns: {
-        'auto-fit': 'repeat(auto-fit, minmax(300px, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+      animation: {
+        fadeIn: 'fadeIn 1s',
+        fadeOut: 'fadeOut 1s',
       },
-      gridTemplateRows: {
-        'auto-fit': 'repeat(auto-fit, minmax(300px, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '0.5' },
+        },
+        fadeOut: {
+          '0%': { opacity: '0.5' },
+          '100%': { opacity: '0' }, 
+        },
+      },
+      inset: {
+        '1/10': '10%',
       },
     },
   },
