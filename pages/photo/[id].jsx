@@ -15,6 +15,7 @@ export default function photo({ photo, caption }) {
             ) : (
                 <>
                     <ImageDisplay
+                        modal={false}
                         photo={photo}
                         caption={caption}
                     />
