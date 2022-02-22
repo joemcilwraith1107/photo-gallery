@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import ImagePreview from '../components/ImagePreview';
+import Gallery from '../components/Gallery';
 import Layout from '../components/Layout';
 import Filters from '../components/Filters';
 
 export default function Home({ items, tags }) {
-  const [filter, setFilter] = useState("");
   const [photos, setPhotos] = useState(items);
   return (
     <Layout>
@@ -15,17 +14,10 @@ export default function Home({ items, tags }) {
         setPhotos={setPhotos}
       />
 
-      <div className="container mx-auto mb-4">
-        <div className="flex flex-row flex-wrap justify-center">
-          {photos && photos.map((preview) => (
-            <ImagePreview
-              key={preview.fileId}
-              thumbnailUrl={preview.url}
-              fileId={preview.fileId}
-            />
-          ))}
-        </div>
-      </div>
+      <Gallery
+        photos={photos}
+      />
+
     </Layout>
   )
 }
