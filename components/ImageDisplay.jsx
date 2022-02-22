@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function ImageDisplay({ modal, photo, caption }) {
     const bgClass = "flex flex-col h-full w-full";
@@ -19,17 +21,26 @@ export default function ImageDisplay({ modal, photo, caption }) {
                         </Link>
                     )}
                 </div>
-                <div className="basis-1/12"></div>
+                <div className="basis-1/12 self-center z-50">
+                    {modal ? (
+                        <Link href="/">
+                            <a>
+                                <FontAwesomeIcon icon={faTimes} className="self-center cursor-pointer" size="3x" color="white" />
+                            </a>
+                        </Link>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
             </div>
             <div className="flex flex-row justify-center basis-11/12">
                 <div className="flex flex-none basis-1/12 justify-center"></div>
-                <div className="basis-11/12 z-10">
-                    <div className="relative h-full w-auto">
+                <div className="basis-11/12">
+                    <div className="relative h-full w-auto z-50">
                         <Image
                             layout="fill"
                             objectFit="contain"
                             priority="true"
-                            className="z-50"
                             src={photo}
                         />
                     </div>
