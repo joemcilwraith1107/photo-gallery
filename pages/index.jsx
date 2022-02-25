@@ -1,31 +1,40 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import ImagePreview from '../components/ImagePreview';
+import Gallery from '../components/Gallery';
 import Layout from '../components/Layout';
 import Filters from '../components/Filters';
+import ImageDisplay from '../components/ImageDisplay';
+import Modal from '../components/Modal';
+import { useRouter } from 'next/router';
 
 export default function Home({ items, tags }) {
-  const [filter, setFilter] = useState("");
+  const router = useRouter();
   const [photos, setPhotos] = useState(items);
   return (
     <Layout>
+      {router.query.photo && (
+        <Modal
+          onClose={() => {
+            router.push("/");
+          }}
+        >
+          <ImageDisplay
+            modal={true}
+            photo={router.query.photo}
+            caption={router.query.caption}
+          />
+        </Modal>
+      )}
       <Filters
         items={items}
         tags={tags}
         setPhotos={setPhotos}
       />
 
-      <div className="container mx-auto mb-4">
-        <div className="flex flex-row flex-wrap justify-center">
-          {photos && photos.map((preview) => (
-            <ImagePreview
-              key={preview.fileId}
-              thumbnailUrl={preview.url}
-              fileId={preview.fileId}
-            />
-          ))}
-        </div>
-      </div>
+      <Gallery
+        photos={photos}
+      />
+
     </Layout>
   )
 }
