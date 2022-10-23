@@ -49,12 +49,14 @@ export async function getStaticProps() {
   const filters = async (items) => {
     let array = ["all"];
     items.forEach((item) => {
+
       let tags = item.tags;
       if (tags == null) {
-        console.log('Untagged picture');
-      }
-      for (let tag of tags) {
-        array.push(tag);
+        console.log(`Untagged picture ${item.name}`);
+      } else {
+        for (let tag of tags) {
+          array.push(tag);
+        }
       }
     });
     return [...new Set(array)];
