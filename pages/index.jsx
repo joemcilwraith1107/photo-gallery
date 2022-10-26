@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 export default function Home({ items, tags }) {
   const router = useRouter();
   const [photos, setPhotos] = useState(items);
+  const [isLoading, setIsLoading] = useState(true)
   return (
     <Layout>
       {router.query.photo && (
@@ -29,10 +30,13 @@ export default function Home({ items, tags }) {
         items={items}
         tags={tags}
         setPhotos={setPhotos}
+        setIsLoading={setIsLoading}
       />
 
       <Gallery
         photos={photos}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
 
     </Layout>

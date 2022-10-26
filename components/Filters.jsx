@@ -1,9 +1,10 @@
 
 
-export default function Filters({ items, tags, setPhotos }) {
+export default function Filters({ items, tags, setPhotos, setIsLoading }) {
     const filteredList = async (filter) => {
         if (filter === "all") {
             setPhotos(items);
+            setIsLoading(true);
         } else {
             let newList = [];
             items.forEach(item => {

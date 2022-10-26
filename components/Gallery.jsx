@@ -1,16 +1,18 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion, LayoutGroup } from 'framer-motion'
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, LayoutGroup } from 'framer-motion';
+import { useState } from 'react';
 
-export default function Gallery({ photos }) {
+export default function Gallery({ photos, isLoading, setIsLoading }) {
+  const [pulsing, setPulsing] = useState(false);
+
   return (
     <div className="container mx-auto mb-4">
-      <motion.div layout className="flex flex-row flex-wrap justify-center">
+      <div className="flex flex-row flex-wrap justify-center">
         {photos &&
           photos.map((photo, index) => (
             <motion.div
-              layout
-              className="flex w-full justify-center overflow-hidden p-2 align-middle sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+              className={`${pulsing ? "animate-pulse bg-slate-300 m-1" : ""} flex w-full justify-center overflow-hidden p-2 align-middle sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5`}
               key={index}
             >
               <div className="relative h-0 w-full pt-1/1">
@@ -27,14 +29,14 @@ export default function Gallery({ photos }) {
                   <Image
                     fill={true}
                     src={photo.url}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className={`${pulsing ? "hidden" : ""} absolute inset-0 h-full w-full object-cover`}
                     alt=""
                   />
                 </Link>
               </div>
             </motion.div>
           ))}
-      </motion.div>
+      </div>
     </div>
   )
 }
