@@ -13,20 +13,16 @@ export default function ImageDisplay({ modal, photo, caption }) {
                 <div className="basis-11/12 self-center">
                     {modal ? (<div></div>) : (
                         <Link href="/">
-                            <a>
                                 <p className={modal == true ? `${fontClass} text-white` : `${fontClass} text-black`}>
                                     &#x21E6; Back to Gallery
                                 </p>
-                            </a>
                         </Link>
                     )}
                 </div>
                 <div className="basis-1/12 self-center z-50">
                     {modal ? (
                         <Link href="/">
-                            <a>
                                 <FontAwesomeIcon icon={faTimes} className="self-center cursor-pointer" size="3x" color="white" />
-                            </a>
                         </Link>
                     ) : (
                         <div></div>
@@ -38,10 +34,11 @@ export default function ImageDisplay({ modal, photo, caption }) {
                 <div className="basis-11/12">
                     <div className="relative h-full w-auto z-50">
                         <Image
-                            layout="fill"
-                            objectFit="contain"
+                            fill={true}
                             priority="true"
+                            className="object-contain"
                             src={photo}
+                            alt={{caption}}
                         />
                     </div>
                 </div>
