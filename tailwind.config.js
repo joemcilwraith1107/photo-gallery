@@ -5,25 +5,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        '300': '300px'
+      },
+      width: {
+        '300': '300px'
+      },
       padding: {
         '1/1': '100%',
       },
-      animation: {
-        fadeIn: 'fadeIn 1s',
-        fadeOut: 'fadeOut 1s',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '0.5' },
-        },
-        fadeOut: {
-          '0%': { opacity: '0.5' },
-          '100%': { opacity: '0' }, 
-        },
-      },
       inset: {
         '1/10': '10%',
+      },
+      gridTemplateColumns: {
+        'photo': 'repeat(auto-fill, minmax(300px, 300px))',
       },
     },
   },
