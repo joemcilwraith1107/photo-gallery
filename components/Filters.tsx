@@ -1,14 +1,13 @@
-import { useContext } from 'react';
 import { useState } from 'react'
-import { PhotoContext } from '../pages';
 
-export default function Filters({ items, tags, setPhotos }) {
+type Filter = string;
+
+export default function Filters({ items, tags, setFilteredPhotos }) {
   const [filterActive, setFilterActive] = useState(0);
-  const {photos, setFilteredPhotos} = useContext(PhotoContext);
   const btnClass = "flex-auto flex-nowrap p-1 text-xs sm:text-sm lg:text-base text-center font-normal hover:text-gray-900";
 
-  const filteredList = async (filter, index) => {
-    const filteredPhotos = photos.filter(photo => photo.tags.includes(filter));
+  const filteredList = async (filter: Filter, index: number) => {
+    const filteredPhotos = items.filter(item => item.tags.includes(filter));
     setFilterActive(index);
     if (index === 0) {
         setFilteredPhotos(items);
@@ -17,7 +16,7 @@ export default function Filters({ items, tags, setPhotos }) {
     }
   }
 
-  const menu = tags.map((filter, index) => (
+  const menu = tags.map((filter: Filter, index: number) => (
     <button
       key={index}
       className={filterActive === index ? `${btnClass} text-black underline` : `${btnClass} text-gray-500`}

@@ -2,7 +2,12 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import ImageDisplay from "../../components/ImageDisplay";
 
-export default function photo({ photo, caption }) {
+type Props = {
+    photo: string
+    caption: string
+  }
+
+export default function photo({ photo, caption }: Props) {
     const router = useRouter();
     if (!router.isFallback && !photo) {
         return <div>ERROR 404 NOT FOUND</div>

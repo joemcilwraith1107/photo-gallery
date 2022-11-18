@@ -4,7 +4,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 
 export default function ScrollToTop() {
-    const [showScroll, setShowScroll] = useState(null);
+    const [showScroll, setShowScroll] = useState(false);
     const scrollTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -25,7 +25,7 @@ export default function ScrollToTop() {
         }, [checkScrollTop]
     );
 
-    const iconClass = "self-center fixed bottom-1/10 right-5 w-20 h-20 align-middle justify-center opacity-50 z-50 bg-gray-600 rounded-2xl hover:opacity-90 transition-opacity duration-500"
+    const iconClass = "self-center fixed bottom-1/10 right-20 w-20 h-20 align-middle justify-center opacity-50 z-50 bg-gray-600 rounded-2xl hover:opacity-90 transition-opacity duration-500"
 
     return (
 

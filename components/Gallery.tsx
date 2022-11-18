@@ -1,11 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useContext } from 'react'
-import { PhotoContext } from '../pages'
 
-export default function Gallery() {
-  const { filteredPhotos } = useContext(PhotoContext)
+export default function Gallery({filteredPhotos}) {
+
   return (
     <div className="container mx-auto mb-4">
       <div className="grid grid-cols-photo justify-center gap-2">
