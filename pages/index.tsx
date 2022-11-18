@@ -7,6 +7,7 @@ import Modal from '../components/Modal'
 import { useRouter } from 'next/router'
 import { createContext } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { GetStaticProps } from 'next'
 
 export const PhotoContext = createContext()
 
@@ -41,8 +42,8 @@ export default function Home({ items, tags }) {
   )
 }
 
-export async function getStaticProps() {
-  const results = await fetch(
+export const getStaticProps: GetStaticProps = async (context) => {
+  const results: Response = await fetch(
     `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
     {
       headers: {
@@ -51,9 +52,9 @@ export async function getStaticProps() {
     }
   )
   const items = await results.json()
-  const filters = async (items) => {
+  const filters = async (items: any[]) => {
     let array = ['all']
-    items.forEach((item) => {
+    items.forEach((item: { tags: any; name: any }) => {
       let tags = item.tags
       if (tags == null) {
         console.log(`Untagged picture ${item.name}`)
@@ -65,6 +66,7 @@ export async function getStaticProps() {
     })
     return [...new Set(array)]
   }
+
   const tags = await filters(items)
   return {
     props: { items, tags },
