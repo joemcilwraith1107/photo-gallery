@@ -2,12 +2,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { ImageDisplayProps } from '../types/types';
+import { ImageDisplayProps } from '../types/types'
 
-export default function ImageDisplay({ modal, photo, caption }: ImageDisplayProps) {
-  const bgClass: string = 'flex flex-col h-full w-full';
-  const fontClass: string = "font-sans text-2xl";
-  
+export default function ImageDisplay({
+  modal,
+  photo,
+  caption,
+}: ImageDisplayProps) {
+  const bgClass: string = 'flex flex-col h-full w-full'
+  const fontClass: string = 'font-sans text-2xl'
+
   return (
     <div
       className={
@@ -23,9 +27,7 @@ export default function ImageDisplay({ modal, photo, caption }: ImageDisplayProp
             <div></div>
           ) : (
             <Link href="/">
-              <p
-                className="font-sans text-2xl text-black"
-              >
+              <p className="font-sans text-2xl text-black">
                 &#x21E6; Back to Gallery
               </p>
             </Link>

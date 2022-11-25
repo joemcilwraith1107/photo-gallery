@@ -1,25 +1,35 @@
 import { useState } from 'react'
-import { FilterProps, PhotoTags } from '../types/types';
+import { FilterProps, PhotoTags } from '../types/types'
 
-
-export default function Filters({ photos, tags, setFilteredPhotos }: FilterProps) {
-  const [filterActive, setFilterActive] = useState(0);
-  const btnClass = "flex-auto flex-nowrap p-1 text-xs sm:text-sm lg:text-base text-center font-normal hover:text-gray-900";
+export default function Filters({
+  photos,
+  tags,
+  setFilteredPhotos,
+}: FilterProps) {
+  const [filterActive, setFilterActive] = useState(0)
+  const btnClass =
+    'flex-auto flex-nowrap p-1 text-xs sm:text-sm lg:text-base text-center font-normal hover:text-gray-900'
 
   const filteredList = async (filter: PhotoTags, index: number) => {
-    const filteredPhotos = photos.filter(item => item.tags.includes(`${filter}`));
-    setFilterActive(index);
+    const filteredPhotos = photos.filter((item) =>
+      item.tags.includes(`${filter}`)
+    )
+    setFilterActive(index)
     if (index === 0) {
-        setFilteredPhotos(photos);
+      setFilteredPhotos(photos)
     } else {
-        setFilteredPhotos(filteredPhotos); 
+      setFilteredPhotos(filteredPhotos)
     }
   }
 
   const menu = tags.map((filter, index) => (
     <button
       key={index}
-      className={filterActive === index ? `${btnClass} text-black underline` : `${btnClass} text-gray-500`}
+      className={
+        filterActive === index
+          ? `${btnClass} text-black underline`
+          : `${btnClass} text-gray-500`
+      }
       value={`${filter}`}
       onClick={async () => {
         await filteredList(filter, index)

@@ -26,9 +26,9 @@ export interface PhotoProps {
 }
 
 export interface ImageDisplayProps {
-  modal: boolean;
-  photo: string;
-  caption: string;
+  modal: boolean
+  photo: string
+  caption: string
 }
 
 export interface PhotoItems {
