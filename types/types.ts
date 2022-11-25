@@ -5,6 +5,11 @@ export interface HomeProps {
   tags: PhotoTags[]
 }
 
+export interface ModalProps {
+  onClose: () => void
+  children: any
+}
+
 export interface GalleryProps {
   filteredPhotos: PhotoItems[]
 }

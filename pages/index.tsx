@@ -7,9 +7,7 @@ import Modal from '../components/Modal'
 import { useRouter } from 'next/router'
 import { AnimatePresence } from 'framer-motion'
 import { GetStaticProps } from 'next'
-import { HomeProps, PhotoItems, PhotoTags } from '../types/types'
-
-
+import { HomeProps, PhotoItems } from '../types/types'
 
 export default function Home({ photos, tags }: HomeProps) {
   const router = useRouter()
