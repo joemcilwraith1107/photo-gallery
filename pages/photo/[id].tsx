@@ -1,13 +1,12 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import ImageDisplay from "../../components/ImageDisplay";
+import { PhotoParams, PhotoProps } from "../../types/types";
+import { GetStaticPaths, GetStaticProps } from "next/types";
 
-type Props = {
-    photo: string
-    caption: string
-  }
 
-export default function photo({ photo, caption }: Props) {
+
+export default function photo({ photo, caption }: PhotoProps) {
     const router = useRouter();
     if (!router.isFallback && !photo) {
         return <div>ERROR 404 NOT FOUND</div>
@@ -30,8 +29,8 @@ export default function photo({ photo, caption }: Props) {
     )
 }
 
-export async function getStaticProps({ params }) {
-    const photo_id = params.id
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const photo_id = params?.id
     const results = await fetch(`${process.env.IK_API}/${photo_id}/details`, {
         headers: {
             Authorization: `${process.env.PRIVATE_HEADER}`
@@ -45,7 +44,7 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const results = await fetch(`${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`, {
         headers: {
             Authorization: `${process.env.PRIVATE_HEADER}`
@@ -54,7 +53,7 @@ export async function getStaticPaths() {
     const items = await results.json();
     return {
         paths:
-            items?.map((photo) => ({
+            items?.map((photo: any) => ({
                 params: {
                     id: photo.fileId,
                 }

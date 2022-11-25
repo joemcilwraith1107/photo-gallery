@@ -2,14 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { ImageDisplayProps } from '../types/types';
 
-type Props = {
-  modal: boolean
-  photo: string
-  caption: string
-}
-
-export default function ImageDisplay({ modal, photo, caption }: Props) {
+export default function ImageDisplay({ modal, photo, caption }: ImageDisplayProps) {
   const bgClass: string = 'flex flex-col h-full w-full';
   const fontClass: string = "font-sans text-2xl";
   

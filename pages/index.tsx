@@ -7,19 +7,19 @@ import Modal from '../components/Modal'
 import { useRouter } from 'next/router'
 import { AnimatePresence } from 'framer-motion'
 import { GetStaticProps } from 'next'
+import { HomeProps, PhotoItems, PhotoTags } from '../types/types'
 
-type Props = {
-  items: any[]
-  tags: string[]
-}
 
-export default function Home({ items, tags }: Props) {
+
+export default function Home({ photos, tags }: HomeProps) {
   const router = useRouter()
-  const [filteredPhotos, setFilteredPhotos] = useState(items)
+  const [filteredPhotos, setFilteredPhotos] = useState(photos)
+  let photoRouter = router.query.photo as string
+  let captionRouter = router.query.caption as string
 
   return (
     <Layout>
-      {router.query.photo && (
+      {photoRouter && (
         <Modal
           onClose={() => {
             router.push('/')
@@ -27,12 +27,16 @@ export default function Home({ items, tags }: Props) {
         >
           <ImageDisplay
             modal={true}
-            photo={router.query.photo}
-            caption={router.query.caption}
+            photo={photoRouter}
+            caption={captionRouter}
           />
         </Modal>
       )}
-      <Filters items={items} tags={tags} setFilteredPhotos={setFilteredPhotos} />
+      <Filters
+        photos={photos}
+        tags={tags}
+        setFilteredPhotos={setFilteredPhotos}
+      />
       <AnimatePresence>
         <Gallery filteredPhotos={filteredPhotos} />
       </AnimatePresence>
@@ -41,7 +45,7 @@ export default function Home({ items, tags }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const results: Response = await fetch(
+  const results = await fetch(
     `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
     {
       headers: {
@@ -50,6 +54,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
   )
   const items = await results.json()
+
+  const photos: PhotoItems = items.map((item: any) => {
+    return {
+      id: item.fileId,
+      url: item.url,
+      caption: item.customMetadata.Caption,
+      tags: item.tags,
+    }
+  })
   const filters = async (items: any[]) => {
     let array = ['all']
     items.forEach((item: { tags: any; name: any }) => {
@@ -67,6 +80,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const tags = await filters(items)
   return {
-    props: { items, tags },
+    props: { photos, tags },
   }
 }
