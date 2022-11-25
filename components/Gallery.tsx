@@ -1,18 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useContext } from 'react'
-import { PhotoContext } from '../pages'
+import { GalleryProps } from '../types/types'
 
-export default function Gallery() {
-  const { filteredPhotos } = useContext(PhotoContext)
+export default function Gallery({ filteredPhotos }: GalleryProps) {
   return (
     <div className="container mx-auto mb-4">
       <div className="grid grid-cols-photo justify-center gap-2">
         {filteredPhotos &&
           filteredPhotos.map((photo, index) => (
             <motion.div
-              key={photo.fileId}
+              key={photo.id}
               className={'relative h-300 w-300 justify-self-center'}
               layout
               initial={{ opacity: 0 }}
@@ -24,12 +22,12 @@ export default function Gallery() {
               }}
             >
               <Link
-                as={`/photo/${photo.fileId}`}
+                as={`/photo/${photo.id}`}
                 href={{
                   pathname: '/',
                   query: {
                     photo: photo.url,
-                    caption: photo.customMetadata.Caption,
+                    caption: photo.caption,
                   },
                 }}
               >
