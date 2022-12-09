@@ -6,4 +6,7 @@ module.exports = {
     domains: ['ik.imagekit.io'],
     loader: "default"
   },
+  experimental: {
+    appDir: true,
+  },
 }

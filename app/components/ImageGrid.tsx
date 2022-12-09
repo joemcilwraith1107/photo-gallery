@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { GalleryProps } from '../types/types'
+import { ImageGridProps } from '../../types/types'
 
-export default function Gallery({ filteredPhotos }: GalleryProps) {
+export default function ImageGrid({ filteredPhotos }: ImageGridProps) {
   return (
     <div className="container mx-auto mb-4">
       <div className="grid grid-cols-photo justify-center gap-2">

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export interface HomeProps {
+export interface GalleryProps {
   photos: PhotoItems[]
-  tags: PhotoTags[]
+  tags: string[]
 }
 
 export interface ModalProps {
@@ -10,13 +10,13 @@ export interface ModalProps {
   children: any
 }
 
-export interface GalleryProps {
+export interface ImageGridProps {
   filteredPhotos: PhotoItems[]
 }
 
 export interface FilterProps {
   photos: PhotoItems[]
-  tags: PhotoTags[]
+  tags: string[]
   setFilteredPhotos: Dispatch<SetStateAction<PhotoItems[]>>
 }
 
@@ -36,8 +36,4 @@ export interface PhotoItems {
   url: string
   caption: string
   tags: string[]
-}
-
-export interface PhotoTags {
-  tag: string
 }

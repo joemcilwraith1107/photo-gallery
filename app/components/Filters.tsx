@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { FilterProps, PhotoTags } from '../types/types'
+import { FilterProps } from '../../types/types'
 
 export default function Filters({
   photos,
@@ -10,7 +12,7 @@ export default function Filters({
   const btnClass =
     'flex-auto flex-nowrap p-1 text-xs sm:text-sm lg:text-base text-center font-normal hover:text-gray-900'
 
-  const filteredList = async (filter: PhotoTags, index: number) => {
+  const filteredList = async (filter: string, index: number) => {
     const filteredPhotos = photos.filter((item) =>
       item.tags.includes(`${filter}`)
     )
