@@ -1,5 +1,7 @@
+'use-client'
+
 import { Dialog } from '@headlessui/react'
-import { ModalProps } from '../types/types'
+import { ModalProps } from '../../types/types'
 
 export default function Modal({ onClose, children }: ModalProps) {
   return (
