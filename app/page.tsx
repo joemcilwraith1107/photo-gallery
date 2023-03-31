@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
 import Gallery from './components/Gallery'
-import { PhotoItems } from '../types/types'
+import { IKResponse, PhotoItems } from '../types/types'
 
 export default async function Page({
   params,
@@ -9,9 +9,8 @@ export default async function Page({
   params: { slug: string }
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  const items = await getData()
-  const photos = await getPhotoData(items)
-  const tags = await getFilterData(items)
+  const photos = await getData();
+  const tags = await getFilterData(photos)
 
   return (
     <>
@@ -20,7 +19,7 @@ export default async function Page({
   )
 }
 
-const getData = async () => {
+const getData: () => Promise<PhotoItems[]> = async () => {
   const results = await fetch(
     `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
     {
@@ -28,34 +27,23 @@ const getData = async () => {
         Authorization: `${process.env.PRIVATE_HEADER}`,
       },
     }
-  )
-
-  // Recommendation: handle errors
-  if (!results.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-  return results.json()
+  ).then((res) => res.json());
+  return results.map((result: IKResponse) => ({
+    id: result.fileId,
+    url: result.url,
+    caption: result.customMetadata.Caption,
+    tags: result.tags,
+  }));
 }
 
-const getPhotoData = async (items: any) => {
-  const photos: PhotoItems[] = items.map((item: any) => {
-    return {
-      id: item.fileId,
-      url: item.url,
-      caption: item.customMetadata.Caption,
-      tags: item.tags,
-    }
-  })
-  return photos
-}
 
-const getFilterData = async (items: any) => {
+
+const getFilterData = async (photos: PhotoItems[]) => {
   let array = ['all']
-  items.forEach((item: { tags: any; name: any }) => {
-    let tags = item.tags
+  photos.forEach((photo: PhotoItems) => {
+    let tags = photo.tags
     if (tags == null) {
-      console.log(`Untagged picture ${item.name}`)
+      console.log(`Untagged picture ${photo.id}`)
     } else {
       for (let tag of tags) {
         array.push(tag)
@@ -64,43 +52,3 @@ const getFilterData = async (items: any) => {
   })
   return [...new Set(array)]
 }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const results = await fetch(
-//     `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
-//     {
-//       headers: {
-//         Authorization: `${process.env.PRIVATE_HEADER}`,
-//       },
-//     }
-//   )
-//   const items = await results.json()
-
-//   const photos: PhotoItems = items.map((item: any) => {
-//     return {
-//       id: item.fileId,
-//       url: item.url,
-//       caption: item.customMetadata.Caption,
-//       tags: item.tags,
-//     }
-//   })
-//   const filters = async (items: any[]) => {
-//     let array = ['all']
-//     items.forEach((item: { tags: any; name: any }) => {
-//       let tags = item.tags
-//       if (tags == null) {
-//         console.log(`Untagged picture ${item.name}`)
-//       } else {
-//         for (let tag of tags) {
-//           array.push(tag)
-//         }
-//       }
-//     })
-//     return [...new Set(array)]
-//   }
-
-//   const tags = await filters(items)
-//   return {
-//     props: { photos, tags },
-//   }
-// }
