@@ -19,7 +19,7 @@ export default async function Page({
   )
 }
 
-const getData: () => Promise<PhotoItems[]> = async () => {
+const getData = async () => {
   const results = await fetch(
     `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
     {
@@ -27,16 +27,20 @@ const getData: () => Promise<PhotoItems[]> = async () => {
         Authorization: `${process.env.PRIVATE_HEADER}`,
       },
     }
-  ).then((res) => res.json());
-  return results.map((result: IKResponse) => ({
-    id: result.fileId,
-    url: result.url,
-    caption: result.customMetadata.Caption,
-    tags: result.tags,
-  }));
+  )
+
+  const items = await results.json()
+  const photos: PhotoItems[] = items.map((item: IKResponse) => {
+    return {
+      id: item.fileId,
+      url: item.url,
+      caption: item.customMetadata.Caption,
+      tags: item.tags,
+    }
+  })
+
+  return photos
 }
-
-
 
 const getFilterData = async (photos: PhotoItems[]) => {
   let array = ['all']

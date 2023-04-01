@@ -22,9 +22,8 @@ export default function ImageGrid({ filteredPhotos }: ImageGridProps) {
               }}
             >
               <Link
-                as={`/photo/${photo.id}`}
                 href={{
-                  pathname: '/',
+                  pathname: `/${photo.id}`,
                   query: {
                     photo: photo.url,
                     caption: photo.caption,

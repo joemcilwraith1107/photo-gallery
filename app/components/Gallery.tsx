@@ -6,13 +6,16 @@ import { GalleryProps } from '../../types/types'
 import Filters from './Filters'
 import ImageGrid from './ImageGrid'
 import Modal from './Modal'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
+import ImageDisplay from './ImageDisplay'
 
 export default function Gallery({ photos, tags }: GalleryProps) {
   const [filteredPhotos, setFilteredPhotos] = useState(photos)
-  const router = useRouter()
-  let photoRouter = router.query.photo as string
-  let captionRouter = router.query.caption as string
+  const params = useSearchParams();
+  const router = useRouter();
+  let photoURL = params?.get('photo') as string;
+  let photoCaption = params?.get('caption') as string;
+  let photoRouter = params?.has('photo');
   return (
     <>
       {photoRouter && (
@@ -23,8 +26,8 @@ export default function Gallery({ photos, tags }: GalleryProps) {
         >
           <ImageDisplay
             modal={true}
-            photo={photoRouter}
-            caption={captionRouter}
+            photo={photoURL}
+            caption={photoCaption}
           />
         </Modal>
       )}
