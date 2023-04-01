@@ -1,4 +1,4 @@
-import { IKResponse, PhotoItems } from "../../types/types"
+import { IKResponse, PhotoItems } from "../../types"
 
 
 export default async function getAllPhotoData() {
@@ -10,6 +10,8 @@ export default async function getAllPhotoData() {
         },
       }
     );
+
+    if (!results.ok) throw new Error('Failed to fetch photo data');
 
     return results.json();
   }

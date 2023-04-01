@@ -1,4 +1,4 @@
-import { PhotoItems } from "../../types/types"
+import { PhotoItems } from "../../types"
 
 export default async function getFilterData (photos: PhotoItems[]) {
     let array = ['all']

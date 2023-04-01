@@ -1,4 +1,4 @@
-import { IKResponse } from "../../types/types"
+import { IKResponse } from "../../types"
 
 export default async function getPhotoData (id: string) {
     const result: IKResponse = await fetch(

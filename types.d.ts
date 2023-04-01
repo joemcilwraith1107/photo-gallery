@@ -1,44 +1,44 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export interface GalleryProps {
+interface GalleryProps {
   photos: PhotoItems[]
   tags: string[]
 }
 
-export interface ModalProps {
+interface ModalProps {
   onClose: () => void
   children: any
 }
 
-export interface ImageGridProps {
+interface ImageGridProps {
   filteredPhotos: PhotoItems[]
 }
 
-export interface FilterProps {
+interface FilterProps {
   photos: PhotoItems[]
   tags: string[]
   setFilteredPhotos: Dispatch<SetStateAction<PhotoItems[]>>
 }
 
-export interface PhotoProps {
+interface PhotoProps {
   url: string
   caption: string
 }
 
-export interface ImageDisplayProps {
+interface ImageDisplayProps {
   modal: boolean
   photo: string
   caption: string
 }
 
-export interface PhotoItems {
+interface PhotoItems {
   id: string
   url: string
   caption: string
   tags: string[]
 }
 
-export interface IKResponse {
+interface IKResponse {
   type:              Type;
   name:              string;
   createdAt:         Date;
