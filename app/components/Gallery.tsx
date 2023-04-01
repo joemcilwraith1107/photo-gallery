@@ -2,43 +2,30 @@
 
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { GalleryProps } from '../../types/types'
 import Filters from './Filters'
-import ImageGrid from './ImageGrid'
-import Modal from './Modal'
-import { useRouter, useSearchParams } from 'next/navigation'
-import ImageDisplay from './ImageDisplay'
+import ImageGrid from '../../pages/old/ImageGrid'
+import { IKResponse } from '../../types/types'
+import getAllPhotoData from '../lib/getAllPhotoData'
 
-export default function Gallery({ photos, tags }: GalleryProps) {
+export default async function Gallery() {
+  const photoData: Promise<IKResponse[]> = getAllPhotoData();
+  const photos = await photoData;
+  //const tags = await getFilterData(photos)
   const [filteredPhotos, setFilteredPhotos] = useState(photos)
-  const params = useSearchParams();
-  const router = useRouter();
-  let photoURL = params?.get('photo') as string;
-  let photoCaption = params?.get('caption') as string;
-  let photoRouter = params?.has('photo');
+
+  console.log(filteredPhotos);
+
   return (
     <>
-      {photoRouter && (
-        <Modal
-          onClose={() => {
-            router.push('/')
-          }}
-        >
-          <ImageDisplay
-            modal={true}
-            photo={photoURL}
-            caption={photoCaption}
-          />
-        </Modal>
-      )}
-      <Filters
+      {/* <Filters
         photos={photos}
         tags={tags}
         setFilteredPhotos={setFilteredPhotos}
-      />
-      <AnimatePresence>
+      /> */}
+      {/* <AnimatePresence>
         <ImageGrid filteredPhotos={filteredPhotos} />
       </AnimatePresence>
+    </> */}
     </>
   )
 }
