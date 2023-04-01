@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import ImageDisplay from '../../components/ImageDisplay';
+import ImageDisplay from '../components/ImageDisplay';
 import { IKResponse, PhotoItems, PhotoProps } from '../../types/types'
 import Layout from '../layout';
 

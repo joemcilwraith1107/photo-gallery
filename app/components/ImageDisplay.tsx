@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { ImageDisplayProps } from '../types/types'
+import { ImageDisplayProps } from '../../types/types'
 
 export default function ImageDisplay({
   modal,
