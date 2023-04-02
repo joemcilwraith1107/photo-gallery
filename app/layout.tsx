@@ -3,10 +3,11 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import { Metadata } from 'next'
 
 config.autoAddCss = false
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Photo Gallery",
   description: "A photo gallery using nextjs",
   viewport: {

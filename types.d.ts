@@ -1,129 +1,144 @@
-import { Dispatch, SetStateAction } from 'react'
-
-interface GalleryProps {
-  photos: PhotoItems[]
-  tags: string[]
-}
-
-interface ModalProps {
-  onClose: () => void
-  children: any
-}
-
-interface ImageGridProps {
-  filteredPhotos: PhotoItems[]
-}
-
-interface FilterProps {
-  photos: PhotoItems[]
-  tags: string[]
-  setFilteredPhotos: Dispatch<SetStateAction<PhotoItems[]>>
-}
-
-interface PhotoProps {
+type ImagesData = {
+  type: Type
+  name: string
+  createdAt: Date
+  updatedAt: Date
+  fileId: string
+  tags: Tag[]
+  AITags: null
+  versionInfo: VersionInfo
+  embeddedMetadata: EmbeddedMetadata | null
+  customCoordinates: null
+  customMetadata: CustomMetadata
+  isPrivateFile: boolean
   url: string
-  caption: string
+  thumbnail: string
+  fileType: FileType
+  filePath: string
+  height: number
+  width: number
+  size: number
+  hasAlpha: boolean
+  mime: MIME
 }
 
-interface ImageDisplayProps {
-  modal: boolean
-  photo: string
-  caption: string
-}
-
-interface PhotoItems {
-  id: string
-  url: string
-  caption: string
+type PhotoData = {
+  type: string
+  name: string
+  createdAt: Date
+  updatedAt: Date
+  fileId: string
   tags: string[]
-}
-
-interface IKResponse {
-  type:              Type;
-  name:              string;
-  createdAt:         Date;
-  updatedAt:         Date;
-  fileId:            string;
-  tags:              Tag[];
-  AITags:            null;
-  versionInfo:       VersionInfo;
-  embeddedMetadata:  EmbeddedMetadata | null;
-  customCoordinates: null;
-  customMetadata:    CustomMetadata;
-  isPrivateFile:     boolean;
-  url:               string;
-  thumbnail:         string;
-  fileType:          FileType;
-  filePath:          string;
-  height:            number;
-  width:             number;
-  size:              number;
-  hasAlpha:          boolean;
-  mime:              MIME;
+  AITags: null
+  versionInfo: VersionInfo
+  embeddedMetadata: EmbeddedMetadata
+  customCoordinates: null
+  customMetadata: CustomMetadata
+  isPrivateFile: boolean
+  url: string
+  thumbnail: string
+  fileType: string
+  filePath: string
+  height: number
+  width: number
+  size: number
+  hasAlpha: boolean
+  mime: string
 }
 
 interface CustomMetadata {
-  "Aspect Ratio": AspectRatio;
-  Caption:        string;
+  'Aspect Ratio': AspectRatio
+  Caption: string
 }
 
 enum AspectRatio {
-  Landscape = "Landscape",
-  Portrait = "Portrait",
-  Square = "Square",
+  Landscape = 'Landscape',
+  Portrait = 'Portrait',
+  Square = 'Square',
 }
 
 interface EmbeddedMetadata {
-  Make:                     string;
-  Model:                    string;
-  ModifyDate:               string;
-  FNumber:                  number;
-  ISO:                      number;
-  ApertureValue:            number;
-  ExposureCompensation?:    number;
-  MeteringMode:             string;
-  Flash:                    string;
-  WhiteBalance:             string;
-  ExifVersion:              string;
-  XResolution:              number;
-  YResolution:              number;
-  ResolutionUnit:           string;
-  DateTimeOriginal:         Date;
-  ColorSpace:               string;
-  ApplicationRecordVersion: number;
-  DateCreated:              Date;
-  DateTimeCreated:          Date;
+  Make: string
+  Model: string
+  ModifyDate: string
+  FNumber: number
+  ISO: number
+  ApertureValue: number
+  ExposureCompensation?: number
+  MeteringMode: string
+  Flash: string
+  WhiteBalance: string
+  ExifVersion: string
+  XResolution: number
+  YResolution: number
+  ResolutionUnit: string
+  DateTimeOriginal: Date
+  ColorSpace: string
+  ApplicationRecordVersion: number
+  DateCreated: Date
+  DateTimeCreated: Date
 }
 
 enum FileType {
-  Image = "image",
+  Image = 'image',
 }
 
 enum MIME {
-  ImageJPEG = "image/jpeg",
+  ImageJPEG = 'image/jpeg',
 }
 
 enum Tag {
-  BlackAndWhite = "black and white",
-  Detail = "detail",
-  Light = "light",
-  Mist = "mist",
-  Mountains = "mountains",
-  Trees = "trees",
-  Urban = "urban",
-  Water = "water",
+  BlackAndWhite = 'black and white',
+  Detail = 'detail',
+  Light = 'light',
+  Mist = 'mist',
+  Mountains = 'mountains',
+  Trees = 'trees',
+  Urban = 'urban',
+  Water = 'water',
 }
 
 enum Type {
-  File = "file",
+  File = 'file',
 }
 
 interface VersionInfo {
-  id:   string;
-  name: Name;
+  id: string
+  name: Name
 }
 
 enum Name {
-  Version1 = "Version 1",
+  Version1 = 'Version 1',
 }
 
+interface CustomMetadata {
+  'Aspect Ratio': string
+  Caption: string
+}
+
+interface EmbeddedMetadata {
+  Make: string
+  Model: string
+  ModifyDate: string
+  FNumber: number
+  ISO: number
+  ApertureValue: number
+  ExposureCompensation: number
+  MeteringMode: string
+  Flash: string
+  WhiteBalance: string
+  ExifVersion: string
+  XResolution: number
+  YResolution: number
+  ResolutionUnit: string
+  DateTimeOriginal: Date
+  ColorSpace: string
+  ApplicationRecordVersion: number
+  DateCreated: Date
+  DateTimeCreated: Date
+}
+
+interface VersionInfo {
+  id: string
+  name: string
+}

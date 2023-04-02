@@ -24,17 +24,16 @@
       }
     ]
   },
+  "baseUrl": ".",
   "paths": {
-    "@/lib/": ["app/lib/*"],
-    "@/components/*": ["app/components/*"],
-    "@/types/*": ["types/*"],
+    "@/*": ["./*"],
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/[id]"  ],
   "exclude": [
     "node_modules"
   ]

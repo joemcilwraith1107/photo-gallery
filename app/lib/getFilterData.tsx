@@ -1,11 +1,10 @@
-import { PhotoItems } from "../../types"
 
-export default async function getFilterData (photos: PhotoItems[]) {
+export default async function getFilterData (photos: ImagesData[]) {
     let array = ['all']
-    photos.forEach((photo: PhotoItems) => {
+    photos.forEach((photo) => {
       let tags = photo.tags
       if (tags == null) {
-        console.log(`Untagged picture ${photo.id}`)
+        console.log(`Untagged picture ${photo.fileId}`)
       } else {
         for (let tag of tags) {
           array.push(tag)

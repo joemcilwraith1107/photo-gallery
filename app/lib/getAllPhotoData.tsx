@@ -1,5 +1,3 @@
-import { IKResponse, PhotoItems } from "../../types"
-
 
 export default async function getAllPhotoData() {
     const results = await fetch(
