@@ -4,7 +4,7 @@ type ImagesData = {
   createdAt: Date
   updatedAt: Date
   fileId: string
-  tags: Tag[]
+  tags: string[]
   AITags: null
   versionInfo: VersionInfo
   embeddedMetadata: EmbeddedMetadata | null
@@ -85,17 +85,6 @@ enum FileType {
 
 enum MIME {
   ImageJPEG = 'image/jpeg',
-}
-
-enum Tag {
-  BlackAndWhite = 'black and white',
-  Detail = 'detail',
-  Light = 'light',
-  Mist = 'mist',
-  Mountains = 'mountains',
-  Trees = 'trees',
-  Urban = 'urban',
-  Water = 'water',
 }
 
 enum Type {
