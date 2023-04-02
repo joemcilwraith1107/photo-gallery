@@ -8,8 +8,8 @@ import { Metadata } from 'next'
 config.autoAddCss = false
 
 export const metadata: Metadata = {
-  title: "Photo Gallery",
-  description: "A photo gallery using nextjs",
+  title: 'Photo Gallery',
+  description: 'A photo gallery using nextjs',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -27,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="shrink basis-11/12">{children}</main>
-        <ScrollToTop />
-        <Footer />
+        <div className="flex h-screen flex-col justify-between">
+          <main className="shrink basis-11/12">{children}</main>
+          <ScrollToTop />
+          <Footer />
+        </div>
       </body>
     </html>
   )

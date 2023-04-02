@@ -8,7 +8,7 @@ type Params = {
 }
 export default function ImageDisplay({ photo }: Params) {
   return (
-    <div className="w-fullbg-white flex h-full flex-col">
+    <div className="flex h-full w-full flex-col bg-white">
       <div className="flex flex-none basis-1/12 flex-row">
         <div className="basis-1/12"></div>
         <div className="basis-11/12 self-center">
@@ -19,14 +19,7 @@ export default function ImageDisplay({ photo }: Params) {
           </Link>
         </div>
         <div className="z-50 basis-1/12 self-center">
-          <Link href="/">
-            <FontAwesomeIcon
-              icon={faTimes}
-              className="cursor-pointer self-center"
-              size="3x"
-              color="white"
-            />
-          </Link>
+          <div></div>
         </div>
       </div>
       <div className="flex basis-11/12 flex-row justify-center">
@@ -47,7 +40,7 @@ export default function ImageDisplay({ photo }: Params) {
       <div className="flex basis-1/12 flex-row justify-center">
         <div className="flex flex-none basis-1/12 justify-center"></div>
         <div className="flex basis-11/12 justify-center self-center">
-          <p className="text-2xltext-black font-sans">
+          <p className="font-sans text-2xl text-black">
             {photo.customMetadata.Caption}
           </p>
         </div>
