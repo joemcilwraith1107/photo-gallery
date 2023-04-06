@@ -37,7 +37,8 @@ export default function ImageGrid({ filteredPhotos }: GalleryProps) {
                   src={photo.url}
                   fill={true}
                   className={'object-cover'}
-                  alt=""
+                  alt={`${ photo.customMetadata.Caption}`}
+                  sizes="420"
                 />
               </Link>
             </motion.div>
