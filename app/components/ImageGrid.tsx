@@ -25,8 +25,13 @@ export default function ImageGrid({ filteredPhotos }: GalleryProps) {
             >
               <Link
                 href={{
-                  pathname: `/${photo.fileId}`,
+                  pathname: `/`,
+                  query: {
+                    photo: photo.url,
+                    caption: photo.customMetadata.Caption
+                  },
                 }}
+                as={`/${photo.fileId}`}
               >
                 <Image
                   src={photo.url}

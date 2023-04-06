@@ -4,25 +4,48 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 type Params = {
-  photo: PhotoData
+  modal: boolean,
+  photo: string,
+  caption: string,
 }
-export default function ImageDisplay({ photo }: Params) {
+export default function ImageDisplay({ modal, photo, caption }: Params) {
   const bgClass: string = 'flex flex-col h-full w-full'
   const fontClass: string = 'font-sans text-2xl'
 
   return (
-    <div className="flex h-full w-full flex-col bg-white">
+    <div
+      className={
+        modal == true
+          ? `${bgClass} bg-black bg-opacity-80`
+          : `${bgClass} bg-white`
+      }
+    >
       <div className="flex flex-none basis-1/12 flex-row">
         <div className="basis-1/12"></div>
         <div className="basis-11/12 self-center">
-          <Link href="/">
-            <p className="font-sans text-2xl text-black">
-              &#x21E6; Back to Gallery
-            </p>
-          </Link>
+          {modal ? (
+            <div></div>
+          ) : (
+            <Link href="/">
+              <p className="font-sans text-2xl text-black">
+                &#x21E6; Back to Gallery
+              </p>
+            </Link>
+          )}
         </div>
         <div className="z-50 basis-1/12 self-center">
-          <div></div>
+          {modal ? (
+            <Link href="/">
+              <FontAwesomeIcon
+                icon={faTimes}
+                className="cursor-pointer self-center"
+                size="3x"
+                color="white"
+              />
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <div className="flex basis-11/12 flex-row justify-center">
@@ -33,8 +56,8 @@ export default function ImageDisplay({ photo }: Params) {
               fill={true}
               priority={true}
               className="object-contain"
-              src={photo.url}
-              alt={photo.customMetadata.Caption}
+              src={photo}
+              alt={caption}
             />
           </div>
         </div>
@@ -43,8 +66,14 @@ export default function ImageDisplay({ photo }: Params) {
       <div className="flex basis-1/12 flex-row justify-center">
         <div className="flex flex-none basis-1/12 justify-center"></div>
         <div className="flex basis-11/12 justify-center self-center">
-          <p className="font-sans text-2xl text-black">
-            {photo.customMetadata.Caption}
+          <p
+            className={
+              modal == true
+                ? `${fontClass} text-white`
+                : `${fontClass} text-black`
+            }
+          >
+            {caption}
           </p>
         </div>
         <div className="flex flex-none basis-1/12 justify-center"></div>
