@@ -1,16 +1,18 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { GalleryProps } from '../types/types'
+import { motion } from "framer-motion"
+import Link from "next/link"
+import Image from "next/image"
 
-export default function Gallery({ filteredPhotos }: GalleryProps) {
+type GalleryProps = {
+  filteredPhotos: ImagesData[]
+}
+export default function ImageGrid({ filteredPhotos }: GalleryProps) {
   return (
     <div className="container mx-auto mb-4">
       <div className="grid grid-cols-photo justify-center gap-2">
         {filteredPhotos &&
           filteredPhotos.map((photo, index) => (
             <motion.div
-              key={photo.id}
+              key={photo.fileId}
               className={'relative h-300 w-300 justify-self-center'}
               layout
               initial={{ opacity: 0 }}
@@ -22,14 +24,14 @@ export default function Gallery({ filteredPhotos }: GalleryProps) {
               }}
             >
               <Link
-                as={`/photo/${photo.id}`}
                 href={{
-                  pathname: '/',
+                  pathname: `/`,
                   query: {
                     photo: photo.url,
-                    caption: photo.caption,
+                    caption: photo.customMetadata.Caption
                   },
                 }}
+                as={`/${photo.fileId}`}
               >
                 <Image
                   src={photo.url}
