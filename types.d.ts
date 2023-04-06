@@ -1,3 +1,8 @@
+type ModalProps = {
+  onClose: () => void
+  children: any
+}
+
 type ImagesData = {
   type: Type
   name: string

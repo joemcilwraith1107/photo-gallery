@@ -7,6 +7,9 @@ type Params = {
   photo: PhotoData
 }
 export default function ImageDisplay({ photo }: Params) {
+  const bgClass: string = 'flex flex-col h-full w-full'
+  const fontClass: string = 'font-sans text-2xl'
+
   return (
     <div className="flex h-full w-full flex-col bg-white">
       <div className="flex flex-none basis-1/12 flex-row">
