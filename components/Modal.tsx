@@ -1,6 +1,13 @@
 import { Dialog } from '@headlessui/react'
+import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
 
-export default function Modal({ onClose, children }: ModalProps) {
+export default function Modal({ children }: ModalProps) {
+  const router = useRouter();
+  const onClose = useCallback(() => {
+    router.back();
+  }, [router]);
+
   return (
     <Dialog
       static

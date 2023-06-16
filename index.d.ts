@@ -1,5 +1,4 @@
 type ModalProps = {
-  onClose: () => void
   children: any
 }
 

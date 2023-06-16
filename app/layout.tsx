@@ -1,8 +1,8 @@
-import '../styles/globals.css'
+import '@styles/globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop'
+import Footer from '@components/Footer'
+import ScrollToTop from '@components/ScrollToTop'
 import { Metadata } from 'next'
 
 config.autoAddCss = false

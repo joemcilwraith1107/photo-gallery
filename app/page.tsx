@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import getAllPhotoData from './lib/getAllPhotoData'
-import Gallery from './components/Gallery';
-import getFilterData from './lib/getFilterData';
+import getAllPhotoData from '@lib/getAllPhotoData'
+import Gallery from '@components/Gallery';
+import getFilterData from '@lib/getFilterData';
 
 export default async function Page() {
   const photoData: Promise<ImagesData[]> = getAllPhotoData()
