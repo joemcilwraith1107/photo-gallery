@@ -2,6 +2,11 @@ type ModalProps = {
   children: any
 }
 
+type LayoutProps = {
+  children: React.ReactNode
+  modal: React.ReactNode
+}
+
 type ImagesData = {
   type: Type
   name: string

@@ -1,3 +1,5 @@
+'use client'
+
 import { Dialog } from '@headlessui/react'
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';

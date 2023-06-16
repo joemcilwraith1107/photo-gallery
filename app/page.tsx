@@ -14,7 +14,6 @@ export default async function Page() {
 
   return (
     <Gallery photos={photos} tags={tags}/>
-
   )
 }
 
