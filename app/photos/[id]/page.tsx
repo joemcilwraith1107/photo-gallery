@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import getAllPhotoData from '@lib/getAllPhotoData'
 import getPhotoData from '@lib/getPhotoData'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import ImageDisplay from '@components/ImageDisplay'
 
 type Params = {
@@ -35,16 +36,18 @@ export default async function Page({ params: { id } }: Params) {
   if (!photo.url) return notFound()
   return (
     <>
-      <div className="flex h-full w-full flex-col bg-white p-4">
+      <div className="p-4 flex h-full w-auto flex-col">
         <div className="flex basis-11/12 flex-row justify-center">
-          <ImageDisplay modal={false} photo={photo} />
+          <div className="flex flex-col basis-1/12 justify-center"></div>
+          <div className="basis-11/12">
+            <ImageDisplay modal={false} photo={photo} />
+          </div>
+          <div className="flex flex-col basis-1/12 justify-center"></div>
         </div>
         <div className="flex basis-1/12 flex-row justify-center">
-          <div className="flex flex-none basis-1/12 justify-center"></div>
-          <div className="flex basis-11/12 justify-center self-center">
-            <p className="font-sans text-2xl text-black">
-              {photo.customMetadata.Caption}
-            </p>
+          <div className="flex flex-col basis-1/12 justify-center"></div>
+          <div className="flex basis-11/12 justify-center items-center">
+            <p className="font-sans text-2xl">{photo.customMetadata.Caption}</p>
           </div>
           <div className="flex flex-none basis-1/12 justify-center"></div>
         </div>
