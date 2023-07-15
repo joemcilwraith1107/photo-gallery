@@ -31,6 +31,7 @@ export default async function Page({ params: { id } }: Params) {
   const photoData: Promise<PhotoData> = getPhotoData(id)
   const photo: PhotoData = await photoData;
 
+
   if(!photo.url) return notFound();
   return (
     <Modal>
