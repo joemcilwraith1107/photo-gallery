@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 export default function Modal({ children }: ModalProps) {
   const overlay = useRef()
-  const wrapper = useRef()
   const router = useRouter()
 
   const onDismiss = useCallback(() => {
@@ -15,11 +14,11 @@ export default function Modal({ children }: ModalProps) {
 
   const onClick = useCallback(
     (e) => {
-      if (e.target === overlay.current || e.target === wrapper.current) {
+      if (e.target === overlay.current) {
         if (onDismiss) onDismiss()
       }
     },
-    [onDismiss, overlay, wrapper]
+    [onDismiss, overlay]
   )
 
   const onKeyDown = useCallback(
