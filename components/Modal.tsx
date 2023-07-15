@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 
 export default function Modal({ children }: ModalProps) {
@@ -17,7 +17,7 @@ export default function Modal({ children }: ModalProps) {
   }, [setIsOpen, router])
 
   const onClick = useCallback(
-    (e) => {
+    (e: any) => {
       if (
         e.target === overlay.current ||
         e.target === wrapper.current ||
