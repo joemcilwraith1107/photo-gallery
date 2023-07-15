@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        '300': '300px'
+        '300': '300px',
+        'screen-80': '80vh'
       },
       width: {
         '300': '300px'
@@ -21,6 +22,9 @@ module.exports = {
       gridTemplateColumns: {
         'photo': 'repeat(auto-fill, minmax(300px, 300px))',
       },
+      flexBasis: {
+        'content': 'content'
+      }
     },
   },
   plugins: [],

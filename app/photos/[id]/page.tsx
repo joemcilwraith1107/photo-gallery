@@ -10,37 +10,54 @@ type Params = {
   }
 }
 
-export async function generateMetadata({ params: { id } }: Params): Promise<Metadata> {
+export async function generateMetadata({
+  params: { id },
+}: Params): Promise<Metadata> {
   const photoData: Promise<PhotoData> = getPhotoData(id)
-  const photo: PhotoData = await photoData;
+  const photo: PhotoData = await photoData
 
-  if(!photo.name) {
+  if (!photo.name) {
     return {
-      title: "Image not found",
+      title: 'Image not found',
     }
   }
 
   return {
     title: photo.name,
-    description: photo.customMetadata.Caption
+    description: photo.customMetadata.Caption,
   }
 }
 
 export default async function Page({ params: { id } }: Params) {
   const photoData: Promise<PhotoData> = getPhotoData(id)
-  const photo: PhotoData = await photoData;
+  const photo: PhotoData = await photoData
 
-  if(!photo.url) return notFound();
+  if (!photo.url) return notFound()
   return (
-      <ImageDisplay modal={false} photo={photo.url} caption={photo.customMetadata.Caption}/>
+    <>
+      <div className="flex h-full w-full flex-col bg-white p-4">
+        <div className="flex basis-11/12 flex-row justify-center">
+          <ImageDisplay modal={false} photo={photo} />
+        </div>
+        <div className="flex basis-1/12 flex-row justify-center">
+          <div className="flex flex-none basis-1/12 justify-center"></div>
+          <div className="flex basis-11/12 justify-center self-center">
+            <p className="font-sans text-2xl text-black">
+              {photo.customMetadata.Caption}
+            </p>
+          </div>
+          <div className="flex flex-none basis-1/12 justify-center"></div>
+        </div>
+      </div>
+    </>
   )
 }
 
 export async function generateStaticParams() {
-  const photoData: Promise<ImagesData[]> = getAllPhotoData();
-  const photos: ImagesData[] = await photoData;
+  const photoData: Promise<ImagesData[]> = getAllPhotoData()
+  const photos: ImagesData[] = await photoData
 
-  return photos.map(photo => ({
-    id: photo.fileId
+  return photos.map((photo) => ({
+    id: photo.fileId,
   }))
 }

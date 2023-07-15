@@ -34,7 +34,7 @@ export default async function Page({ params: { id } }: Params) {
   if(!photo.url) return notFound();
   return (
     <Modal>
-      <ImageDisplay modal={true} photo={photo.url} caption={photo.customMetadata.Caption}/>
+      <ImageDisplay modal={true} photo={photo}/>
     </Modal>
   )
 }

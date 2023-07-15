@@ -7,6 +7,11 @@ type LayoutProps = {
   modal: React.ReactNode
 }
 
+type ImageDisplay = {
+  modal: boolean
+  photo: PhotoData
+}
+
 type ImagesData = {
   type: Type
   name: string
