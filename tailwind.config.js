@@ -8,17 +8,17 @@ module.exports = {
     extend: {
       height: {
         '300': '300px',
-        'screen-80': '80%'
+        'screen-80': '90%'
       },
       width: {
         '300': '300px',
-        'screen-80': '80%'
+        'screen-80': '90%'
       },
       maxHeight: {
-        'screen-80': '80%'
+        'screen-80': '90%'
       },
       maxWidth: {
-        'screen-80': '80%'
+        'screen-80': '90%'
       },
       padding: {
         '1/1': '100%',

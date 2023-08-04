@@ -38,7 +38,7 @@ export default function Modal({ children }: ModalProps) {
     >
       <div ref={overlay} onClick={onClick} className="fixed bottom-0 left-0 right-0 top-0 bg-black/60" />
       <div ref={wrapper} onClick={onClick} className="fixed inset-0 flex items-center justify-center p-4">
-        <Dialog.Panel ref={panel} onClick={onClick} className="flex h-full flex-col items-center justify-center">
+        <Dialog.Panel ref={panel} onClick={onClick} className="flex h-full w-full flex-col items-center justify-center">
           {children}
         </Dialog.Panel>
       </div>
