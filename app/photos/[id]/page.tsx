@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import getAllPhotoData from '@lib/getAllPhotoData'
 import getPhotoData from '@lib/getPhotoData'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import ImageDisplay from '@components/ImageDisplay'
 
 type Params = {

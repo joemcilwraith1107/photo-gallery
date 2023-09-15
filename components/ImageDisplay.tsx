@@ -1,14 +1,14 @@
 
-import Image from 'next/image'
+import Image from 'next/image';
+import { getPlaiceholder } from "plaiceholder";
 
-export default function ImageDisplay({ modal, photo }: ImageDisplay) {
-  const extraClasses = modal
-    ? 'max-h-screen-80 max-w-screen-80 bg-white p-4'
-    : ''
+export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
+
+  const ratio = `aspect-[${photo.width}/${photo.height}]`
   return (
     <>
       {modal ? (
-        <div className="relative flex max-h-screen-80 max-w-screen-80 flex-col bg-white p-4">
+        <div className={`relative flex flex-col bg-white p-4 max-w-[90%] max-h-[90%] ${ratio}`}>
           <div className="absolute inset-0 mx-auto flex flex-col">
             <div className="right-0 top-0 flex items-center p-4">
               <div className="rounded-full bg-black/60 text-white/75 hover:bg-black hover:text-white sm:p-2 md:p-4 ">
@@ -31,10 +31,10 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
           </div>
           <Image
             priority={true}
+            className="h-full w-full"
             height={photo.height}
             width={photo.width}
             sizes="100vw"
-            className="h-full w-full"
             src={photo.url}
             alt={photo.customMetadata.Caption}
           />
