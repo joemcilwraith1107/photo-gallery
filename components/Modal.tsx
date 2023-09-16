@@ -30,6 +30,7 @@ export default function Modal({ children }: ModalProps) {
   )
 
   return (
+  
     <Dialog
       open={isOpen}
       onClose={() => {

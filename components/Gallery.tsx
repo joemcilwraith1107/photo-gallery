@@ -4,8 +4,6 @@ import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import Filters from './Filters'
 import ImageGrid from './ImageGrid'
-import { useSearchParams, useRouter } from 'next/navigation'
-import ImageDisplay from './ImageDisplay'
 
 type Params = {
   photos: ImagesData[]
