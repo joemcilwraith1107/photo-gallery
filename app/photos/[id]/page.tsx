@@ -3,6 +3,7 @@ import getAllPhotoData from '@lib/getAllPhotoData'
 import getPhotoData from '@lib/getPhotoData'
 import { notFound } from 'next/navigation'
 import ImageDisplay from '@components/ImageDisplay'
+import Footer from '@components/Footer'
 
 type Params = {
   params: {
@@ -34,18 +35,11 @@ export default async function Page({ params: { id } }: Params) {
 
   if (!photo.url) return notFound()
   return (
-    <>
-      <div className="grid-cols-12 grid-rows-12 gap-0">
-        <div className="col-span-10 col-start-2 row-span-11 row-start-1">
-          <div className="fixed inset-0 h-full w-full">
+    <main className="fixed inset-0 flex items-center justify-center p-4">
+      <div className="flex h-full w-full flex-col items-center justify-center">
             <ImageDisplay modal={false} photo={photo} />
-          </div>
-        </div>
-        <div className="col-span-10 col-start-2">
-          <p className="font-sans text-2xl">{photo.customMetadata.Caption}</p>
-        </div>
       </div>
-    </>
+    </main>
   )
 }
 

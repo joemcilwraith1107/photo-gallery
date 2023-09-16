@@ -1,9 +1,7 @@
 
 import Image from 'next/image';
-import { getPlaiceholder } from "plaiceholder";
 
 export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
-
   const ratio = `aspect-[${photo.width}/${photo.height}]`
   return (
     <>
@@ -37,6 +35,9 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
             src={photo.url}
             alt={photo.customMetadata.Caption}
           />
+        </div>
+        <div className='relative max-h-[10%] w-auto'>
+          <p className={modal == true ? `text-white text-lg` : `text-black text-lg`}>{photo.customMetadata.Caption}</p>
         </div>
     </>
   )
