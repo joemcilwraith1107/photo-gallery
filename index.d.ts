@@ -1,6 +1,15 @@
 type ModalProps = {
-  onClose: () => void
   children: any
+}
+
+type LayoutProps = {
+  children: React.ReactNode
+  modal: React.ReactNode
+}
+
+type ImageDisplay = {
+  modal: boolean
+  photo: PhotoData
 }
 
 type ImagesData = {

@@ -1,6 +1,6 @@
-import { motion } from "framer-motion"
-import Link from "next/link"
-import Image from "next/image"
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
 
 type GalleryProps = {
   filteredPhotos: ImagesData[]
@@ -23,21 +23,12 @@ export default function ImageGrid({ filteredPhotos }: GalleryProps) {
                 layout: { duration: 0.7 },
               }}
             >
-              <Link
-                href={{
-                  pathname: `/`,
-                  query: {
-                    photo: photo.url,
-                    caption: photo.customMetadata.Caption
-                  },
-                }}
-                as={`/${photo.fileId}`}
-              >
+              <Link href={`photos/${photo.fileId}`}>
                 <Image
                   src={photo.url}
                   fill={true}
                   className={'object-cover'}
-                  alt={`${ photo.customMetadata.Caption}`}
+                  alt={`${photo.customMetadata.Caption}`}
                   sizes="320px"
                 />
               </Link>
