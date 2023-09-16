@@ -7,7 +7,6 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
   const ratio = `aspect-[${photo.width}/${photo.height}]`
   return (
     <>
-      {modal ? (
         <div className={`relative flex flex-col bg-white p-4 max-w-[90%] max-h-[90%] ${ratio}`}>
           <div className="absolute inset-0 mx-auto flex flex-col">
             <div className="right-0 top-0 flex items-center p-4">
@@ -39,18 +38,6 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
             alt={photo.customMetadata.Caption}
           />
         </div>
-      ) : (
-        <div className="relative h-full w-auto">
-          <Image
-            fill={true}
-            priority={true}
-            sizes="100vh"
-            className="object-contain"
-            src={photo.url}
-            alt={photo.customMetadata.Caption}
-          />
-        </div>
-      )}
     </>
   )
 }

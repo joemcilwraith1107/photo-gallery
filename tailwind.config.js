@@ -28,6 +28,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'photo': 'repeat(auto-fill, minmax(300px, 300px))',
+        '12': 'repeat(12, minmax(0, 1fr))',
       },
       gridTemplateRows: {
         '12': 'repeat(12, minmax(0, 1fr))'

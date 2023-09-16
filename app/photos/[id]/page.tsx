@@ -35,20 +35,14 @@ export default async function Page({ params: { id } }: Params) {
   if (!photo.url) return notFound()
   return (
     <>
-      <div className="p-4 flex h-full w-auto flex-col">
-        <div className="flex basis-11/12 flex-row justify-center">
-          <div className="flex flex-col basis-1/12 justify-center"></div>
-          <div className="basis-11/12">
+      <div className="grid-cols-12 grid-rows-12 gap-0">
+        <div className="col-span-10 col-start-2 row-span-11 row-start-1">
+          <div className="fixed inset-0 h-full w-full">
             <ImageDisplay modal={false} photo={photo} />
           </div>
-          <div className="flex flex-col basis-1/12 justify-center"></div>
         </div>
-        <div className="flex basis-1/12 flex-row justify-center">
-          <div className="flex flex-col basis-1/12 justify-center"></div>
-          <div className="flex basis-11/12 justify-center items-center">
-            <p className="font-sans text-2xl">{photo.customMetadata.Caption}</p>
-          </div>
-          <div className="flex flex-none basis-1/12 justify-center"></div>
+        <div className="col-span-10 col-start-2">
+          <p className="font-sans text-2xl">{photo.customMetadata.Caption}</p>
         </div>
       </div>
     </>
