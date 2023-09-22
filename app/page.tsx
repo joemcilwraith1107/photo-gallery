@@ -1,7 +1,6 @@
 import getAllPhotoData from '@lib/getAllPhotoData'
 import Gallery from '@components/Gallery'
 import getFilterData from '@lib/getFilterData'
-import Modal from '@components/Modal'
 import ScrollToTop from '@components/ScrollToTop'
 import Footer from '@components/Footer'
 

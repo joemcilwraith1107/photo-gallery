@@ -8,9 +8,6 @@ const config = {
     domains: ['ik.imagekit.io'],
     loader: "default"
   },
-  experimental: {
-    appDir: true,
-  },
 }
 
 export default withPlaiceholder(config);

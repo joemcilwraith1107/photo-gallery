@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import { Dialog } from '@headlessui/react'
+import { motion } from 'framer-motion'
 
 export default function Modal({ children }: ModalProps) {
   const overlay = useRef(null)
@@ -16,21 +17,7 @@ export default function Modal({ children }: ModalProps) {
     router.back()
   }, [setIsOpen, router])
 
-  const onClick = useCallback(
-    (e: any) => {
-      if (
-        e.target === overlay.current ||
-        e.target === wrapper.current ||
-        e.target === panel.current
-      ) {
-        if (onDismiss) onDismiss()
-      }
-    },
-    [onDismiss, overlay, wrapper, panel]
-  )
-
   return (
-  
     <Dialog
       open={isOpen}
       onClose={() => {
@@ -39,20 +26,28 @@ export default function Modal({ children }: ModalProps) {
     >
       <div
         ref={overlay}
-        onClick={onClick}
         className="fixed bottom-0 left-0 right-0 top-0 bg-black/60"
       />
       <div
         ref={wrapper}
-        onClick={onClick}
         className="fixed inset-0 flex items-center justify-center p-4"
       >
         <Dialog.Panel
           ref={panel}
-          onClick={onClick}
+          onClick={() => {
+            onDismiss()
+          }}
           className="flex h-full w-full flex-col items-center justify-center"
         >
-          {children}
+          <motion.div
+            className={`flex h-full w-full flex-col items-center justify-center`}
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "easeOut", duration: 2 }}
+          >
+            {children}
+          </motion.div>
         </Dialog.Panel>
       </div>
     </Dialog>
