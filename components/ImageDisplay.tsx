@@ -1,11 +1,12 @@
 import Image from 'next/image'
 
 export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
-  const ratio = `aspect-[${photo.width}/${photo.height}]`
+  const ratio = `${photo.width}/${photo.height}`
   return (
     <>
+
       <div
-        className={`relative flex max-h-[90%] max-w-[90%] flex-col bg-white p-4 ${ratio}`}
+        className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4`} style={{["aspectRatio" as any]: `${ratio}`}}
       >
         <div className="absolute inset-0 mx-auto flex flex-col">
           <div className="right-0 top-0 flex items-center p-4">
@@ -27,6 +28,7 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
             </div>
           </div>
         </div>
+
         <Image
           priority={true}
           className="h-full w-full min-w-56 min-h-56"
@@ -42,10 +44,11 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
           className={
             modal == true ? `text-lg text-white` : `text-lg text-black`
           }
-        >
+          >
           {photo.customMetadata.Caption}
         </p>
       </div>
+
     </>
   )
 }

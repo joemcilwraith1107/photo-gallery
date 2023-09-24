@@ -15,10 +15,10 @@ module.exports = {
         'screen-80': '80%'
       },
       maxHeight: {
-        'screen-80': '80vh'
+        '90': '90%'
       },
       maxWidth: {
-        'screen-80': '80vw'
+        '90': '90%'
       },
       padding: {
         '1/1': '100%',
