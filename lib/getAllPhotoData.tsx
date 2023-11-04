@@ -1,9 +1,9 @@
 import cloudinary from './cloudinary'
 
-export default async function getAllPhotoData(): Promise<PhotoData[]> {
+export default async function getAllPhotoData(): Promise<PhotosData[]> {
   const results = await cloudinary.api.resources_by_asset_folder("Portfolio", {tags: true, metadata: true})
 
-  let reducedResults: PhotoData[] = []
+  let reducedResults: PhotosData[] = []
   let i = 0
 
   for (let result of results.resources) {

@@ -12,31 +12,7 @@ type ImageDisplay = {
   photo: PhotoData
 }
 
-type ImagesData = {
-  type: Type
-  name: string
-  createdAt: Date
-  updatedAt: Date
-  fileId: string
-  tags: string[]
-  AITags: null
-  versionInfo: VersionInfo
-  embeddedMetadata: EmbeddedMetadata | null
-  customCoordinates: null
-  customMetadata: CustomMetadata
-  isPrivateFile: boolean
-  url: string
-  thumbnail: string
-  fileType: FileType
-  filePath: string
-  height: number
-  width: number
-  size: number
-  hasAlpha: boolean
-  mime: MIME
-}
-
-type PhotoData = {
+type PhotosData = {
   id: number
   height: number,
   width: number,
@@ -44,9 +20,50 @@ type PhotoData = {
   tags: string[]
 }
 
-interface CustomMetadata {
-  'Aspect Ratio': AspectRatio
-  Caption: string
+interface PhotoData {
+  asset_id:      string;
+  public_id:     string;
+  format:        string;
+  version:       number;
+  resource_type: string;
+  type:          string;
+  created_at:    Date;
+  bytes:         number;
+  width:         number;
+  height:        number;
+  asset_folder:  string;
+  display_name:  string;
+  url:           string;
+  secure_url:    string;
+  context:       Context;
+  last_updated:  LastUpdated;
+  tags:          string[];
+  next_cursor:   string;
+  derived:       Derived[];
 }
+
+interface Context {
+  custom: Custom;
+}
+
+interface Custom {
+  caption: string;
+}
+
+interface Derived {
+  transformation: string;
+  format:         string;
+  bytes:          number;
+  id:             string;
+  url:            string;
+  secure_url:     string;
+}
+
+interface LastUpdated {
+  context_updated_at: Date;
+  tags_updated_at:    Date;
+  updated_at:         Date;
+}
+
 
 

@@ -36,7 +36,7 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
           width={photo.width}
           sizes="100vw"
           src={photo.url}
-          alt={photo.customMetadata.Caption}
+          alt={photo.context.custom.caption}
         />
       </div>
       <div className="relative max-h-[10%] w-auto">
@@ -45,7 +45,7 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
             modal == true ? `text-lg text-white` : `text-lg text-black`
           }
           >
-          {photo.customMetadata.Caption}
+          {photo.context.custom.caption}
         </p>
       </div>
 

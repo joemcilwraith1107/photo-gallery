@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 type GalleryProps = {
-  filteredPhotos: PhotoData[]
+  filteredPhotos: PhotosData[]
 }
 export default function ImageGrid({ filteredPhotos }: GalleryProps) {
   return (

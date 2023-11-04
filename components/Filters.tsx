@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 
 type Params = {
-  photos: PhotoData[]
+  photos: PhotosData[]
   tags: string[]
-  setFilteredPhotos: Dispatch<SetStateAction<PhotoData[]>>
+  setFilteredPhotos: Dispatch<SetStateAction<PhotosData[]>>
 }
 
 export default function Filters({ photos, tags, setFilteredPhotos }: Params) {
