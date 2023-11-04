@@ -17,15 +17,15 @@ export async function generateMetadata({
   const photoData: Promise<PhotoData> = getPhotoData(id)
   const photo: PhotoData = await photoData
 
-  if (!photo.name) {
+  if (!photo.display_name) {
     return {
-      title: 'Image not found',
+      title: 'photo not found',
     }
   }
 
   return {
-    title: photo.name,
-    description: photo.customMetadata.Caption,
+    title: photo.display_name,
+    description: photo.context.custom.caption,
   }
 }
 
@@ -42,10 +42,10 @@ export default async function Page({ params: { id } }: Params) {
 }
 
 export async function generateStaticParams() {
-  const photoData: Promise<ImagesData[]> = getAllPhotoData()
-  const photos: ImagesData[] = await photoData
+  const photoData: Promise<PhotosData[]> = getAllPhotoData()
+  const photos: PhotosData[] = await photoData
 
   return photos.map((photo) => ({
-    id: photo.fileId,
+    id: photo.public_id,
   }))
 }
