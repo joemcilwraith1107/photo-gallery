@@ -3,7 +3,6 @@ import getAllPhotoData from '@lib/getAllPhotoData'
 import getPhotoData from '@lib/getPhotoData'
 import { notFound } from 'next/navigation'
 import ImageDisplay from '@components/ImageDisplay'
-import Footer from '@components/Footer'
 
 type Params = {
   params: {
