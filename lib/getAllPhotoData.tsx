@@ -1,15 +1,22 @@
+import cloudinary from './cloudinary'
 
-export default async function getAllPhotoData() {
-    const results = await fetch(
-      `${process.env.IK_API}?path=Portfolio&sort=DESC_NAME`,
-      {
-        headers: {
-          Authorization: `${process.env.PRIVATE_HEADER}`,
-        },
-      }
-    );
+export default async function getAllPhotoData(): Promise<PhotoData[]> {
+  const results = await cloudinary.api.resources_by_asset_folder("Portfolio", {tags: true, metadata: true})
 
-    if (!results.ok) throw new Error('Failed to fetch photo data');
+  let reducedResults: PhotoData[] = []
+  let i = 0
 
-    return results.json();
+  for (let result of results.resources) {
+    reducedResults.push({
+      id: i,
+      height: result.height,
+      width: result.width,
+      tags: result.tags,
+      public_id: result.public_id,
+    });
+    i++
   }
+
+  return reducedResults;
+
+}

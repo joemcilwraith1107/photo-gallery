@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 type GalleryProps = {
-  filteredPhotos: ImagesData[]
+  filteredPhotos: PhotoData[]
 }
 export default function ImageGrid({ filteredPhotos }: GalleryProps) {
   return (
@@ -12,7 +12,7 @@ export default function ImageGrid({ filteredPhotos }: GalleryProps) {
         {filteredPhotos &&
           filteredPhotos.map((photo, index) => (
             <motion.div
-              key={photo.fileId}
+              key={photo.id}
               className={'relative h-300 w-300 justify-self-center'}
               layout
               initial={{ opacity: 0 }}
@@ -23,12 +23,12 @@ export default function ImageGrid({ filteredPhotos }: GalleryProps) {
                 layout: { duration: 0.7 },
               }}
             >
-              <Link href={`photos/${photo.fileId}`}>
+              <Link href={`photos/${photo.public_id}`}>
                 <Image
-                  src={photo.url}
+                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_320/${photo.public_id}.jpg`}
                   fill={true}
                   className={'object-cover'}
-                  alt={`${photo.customMetadata.Caption}`}
+                  alt={`${photo.public_id}`}
                   sizes="320px"
                 />
               </Link>

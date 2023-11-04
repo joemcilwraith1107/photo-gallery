@@ -6,7 +6,7 @@ import Filters from './Filters'
 import ImageGrid from './ImageGrid'
 
 type Params = {
-  photos: ImagesData[]
+  photos: PhotoData[]
   tags: string[]
 }
 

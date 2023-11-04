@@ -1,19 +1,14 @@
-import getAllPhotoData from './getAllPhotoData'
+import cloudinary from './cloudinary'
 
-export default async function getFilterData() {
-  const photoData: Promise<ImagesData[]> = getAllPhotoData()
-  const photos: ImagesData[] = await photoData
+type TagsResponse = {
+  tags: string[]
+}
 
-  let array = ['all']
-  photos.forEach((photo) => {
-    let tags = photo.tags
-    if (tags == null) {
-      console.log(`Untagged picture ${photo.fileId}`)
-    } else {
-      for (let tag of tags) {
-        array.push(tag)
-      }
-    }
-  })
-  return [...new Set(array)]
+export default async function getFilterData(): Promise<string[]> {
+  const results: TagsResponse = await cloudinary.api
+    .tags();
+
+  results.tags.unshift("all");
+
+  return results.tags
 }

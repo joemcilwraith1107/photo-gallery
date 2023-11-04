@@ -5,11 +5,11 @@ import ScrollToTop from '@components/ScrollToTop'
 import Footer from '@components/Footer'
 
 export default async function Page() {
-  const photoData: Promise<ImagesData[]> = getAllPhotoData()
-  const tagsData: Promise<string[]> = getFilterData()
+  const photoData = getAllPhotoData()
+  const tagsData = getFilterData()
 
   const [photos, tags] = await Promise.all([photoData, tagsData])
-
+  console.log(photos)
   return (
     <div className="flex h-screen flex-col justify-between">
       <main className="shrink basis-11/12">
