@@ -39,15 +39,11 @@ export default function Modal({ children }: ModalProps) {
           }}
           className="flex h-full w-full flex-col items-center justify-center"
         >
-          <motion.div
+          <div
             className={`flex h-full w-full flex-col items-center justify-center`}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ ease: "easeOut", duration: 2 }}
           >
             {children}
-          </motion.div>
+          </div>
         </Dialog.Panel>
       </div>
     </Dialog>

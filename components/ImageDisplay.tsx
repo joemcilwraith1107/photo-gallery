@@ -1,14 +1,26 @@
-import Image from 'next/image'
+'use client'
 
-export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
-  const ratio = `${photo.width}/${photo.height}`
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { shimmer, toBase64 } from '@lib/getShimmer'
+
+export default function ImageDisplay({ modal, photo }: ImageDisplay) {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <>
-
-      <div
-        className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4`} style={{["aspectRatio" as any]: `${ratio}`}}
+      <motion.div
+        className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4`}
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ ease: 'easeInOut', duration: 0.75 }}
       >
-        <div className="absolute inset-0 mx-auto flex flex-col">
+        <div
+          className={
+            loaded ? `absolute inset-0 mx-auto flex flex-col` : `hidden`
+          }
+        >
           <div className="right-0 top-0 flex items-center p-4">
             <div className="rounded-full bg-black/60 text-white/75 hover:bg-black hover:text-white sm:p-2 md:p-4 ">
               <svg
@@ -37,18 +49,28 @@ export default async function ImageDisplay({ modal, photo }: ImageDisplay) {
           sizes="100vw"
           src={photo.url}
           alt={photo.customMetadata.Caption}
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(photo.width, photo.height),
+          )}`}
+          onLoad={() => {
+            setLoaded(true)
+          }}
         />
-      </div>
-      <div className="relative max-h-[10%] w-auto">
+      </motion.div>
+      <motion.div
+        className={loaded === true ? `relative max-h-[10%] w-auto` : `hidden`}
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ ease: 'easeInOut', duration: 2 }}
+      >
         <p
           className={
             modal == true ? `text-lg text-white` : `text-lg text-black`
           }
-          >
+        >
           {photo.customMetadata.Caption}
         </p>
-      </div>
-
+      </motion.div>
     </>
   )
 }

@@ -3,7 +3,6 @@ import getAllPhotoData from '@lib/getAllPhotoData'
 import getPhotoData from '@lib/getPhotoData'
 import { notFound } from 'next/navigation'
 import ImageDisplay from '@components/ImageDisplay'
-import Footer from '@components/Footer'
 
 type Params = {
   params: {
@@ -37,7 +36,7 @@ export default async function Page({ params: { id } }: Params) {
   return (
     <main className="fixed inset-0 flex items-center justify-center p-4">
       <div className="flex h-full w-full flex-col items-center justify-center">
-            <ImageDisplay modal={false} photo={photo} />
+        <ImageDisplay modal={false} photo={photo} />
       </div>
     </main>
   )
