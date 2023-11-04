@@ -9,7 +9,7 @@ export default async function Page() {
   const tagsData = getFilterData()
 
   const [photos, tags] = await Promise.all([photoData, tagsData])
-  console.log(photos)
+
   return (
     <div className="flex h-screen flex-col justify-between">
       <main className="shrink basis-11/12">
