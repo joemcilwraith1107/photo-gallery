@@ -8,15 +8,20 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
   const [loaded, setLoaded] = useState(false)
   return (
     <>
-
       <motion.div
         className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4 min-w-[350px] min-h-[350px]`}
-        animate={{opacity: 1}}
+        animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         exit={{ opacity: 0 }}
-        transition={{ ease: "easeOut", duration: 2 }}
+        transition={{ ease: 'easeInOut', duration: 0.75 }}
       >
-        <div className={loaded === true ? `absolute inset-0 mx-auto flex flex-col`: `hidden`}>
+        <div
+          className={
+            loaded === true
+              ? `absolute inset-0 mx-auto flex flex-col`
+              : `hidden`
+          }
+        >
           <div className="right-0 top-0 flex items-center p-4">
             <div className="rounded-full bg-black/60 text-white/75 hover:bg-black hover:text-white sm:p-2 md:p-4 ">
               <svg
@@ -45,19 +50,25 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
           sizes="100vw"
           src={photo.url}
           alt={photo.context.custom.caption}
-          onLoad={() => {setLoaded(true)}}
+          onLoad={() => {
+            setLoaded(true)
+          }}
         />
       </motion.div>
-      <div className="relative max-h-[10%] w-auto">
+      <motion.div
+        className={loaded === true ? `relative max-h-[10%] w-auto` : `hidden`}
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ ease: 'easeInOut', duration: 2 }}
+      >
         <p
           className={
             modal == true ? `text-lg text-white` : `text-lg text-black`
           }
-          >
+        >
           {photo.context.custom.caption}
         </p>
-      </div>
-
+      </motion.div>
     </>
   )
 }
