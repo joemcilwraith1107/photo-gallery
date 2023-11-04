@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { motion } from 'framer-motion'
 
 export default function Modal({ children }: ModalProps) {
   const overlay = useRef(null)
@@ -39,15 +38,11 @@ export default function Modal({ children }: ModalProps) {
           }}
           className="flex h-full w-full flex-col items-center justify-center"
         >
-          <motion.div
+          <div
             className={`flex h-full w-full flex-col items-center justify-center`}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ ease: "easeOut", duration: 2 }}
           >
             {children}
-          </motion.div>
+          </div>
         </Dialog.Panel>
       </div>
     </Dialog>
