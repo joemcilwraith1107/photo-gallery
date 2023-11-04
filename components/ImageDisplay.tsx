@@ -3,23 +3,22 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { shimmer, toBase64 } from '@lib/getShimmer'
 
 export default function ImageDisplay({ modal, photo }: ImageDisplay) {
   const [loaded, setLoaded] = useState(false)
+
   return (
     <>
       <motion.div
-        className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4 min-w-[350px] min-h-[350px]`}
+        className={`relative flex max-h-90 max-w-90 flex-col bg-white p-4`}
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
         transition={{ ease: 'easeInOut', duration: 0.75 }}
       >
         <div
           className={
-            loaded === true
-              ? `absolute inset-0 mx-auto flex flex-col`
-              : `hidden`
+            loaded ? `absolute inset-0 mx-auto flex flex-col` : `hidden`
           }
         >
           <div className="right-0 top-0 flex items-center p-4">
@@ -50,6 +49,9 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
           sizes="100vw"
           src={photo.url}
           alt={photo.context.custom.caption}
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(photo.width, photo.height),
+          )}`}
           onLoad={() => {
             setLoaded(true)
           }}
