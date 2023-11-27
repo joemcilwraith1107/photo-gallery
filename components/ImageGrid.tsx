@@ -6,6 +6,7 @@ type GalleryProps = {
   filteredPhotos: ImagesData[]
 }
 export default function ImageGrid({ filteredPhotos }: GalleryProps) {
+
   return (
     <div className="container mx-auto mb-4">
       <div className="grid grid-cols-photo justify-center gap-2">
