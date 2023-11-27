@@ -39,11 +39,7 @@ export default function Modal({ children }: ModalProps) {
           }}
           className="flex h-full w-full flex-col items-center justify-center"
         >
-          <div
-            className={`flex h-full w-full flex-col items-center justify-center`}
-          >
-            {children}
-          </div>
+          {children}
         </Dialog.Panel>
       </div>
     </Dialog>

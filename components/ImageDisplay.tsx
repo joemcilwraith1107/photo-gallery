@@ -1,27 +1,41 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useAnimate } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import BackButton from '@components/BackButton'
 
+function imageAnimation(
+  loaded: boolean,
+) {
+  const [scope, animate] = useAnimate()
+  useEffect(() => {
+    const image = document.querySelector('#image') ?? "";
+    const caption = document.querySelector('#caption') ?? "";
+    animate(
+      scope.current,
+      loaded
+        ? { height: '100%', width: '100%' }
+        : { height: '200px', width: '200px' },
+      { ease: 'easeInOut', duration: 1 },
+    )
+    animate(image, { opacity: loaded ? 1 : 0 }, { duration: 0.5 })
+    animate(caption, { opacity: loaded ? 1 : 0 }, { duration: 0.5 })
+  }, [loaded])
+
+  return scope
+}
+
 export default function ImageDisplay({ modal, photo }: ImageDisplay) {
   const [loaded, setLoaded] = useState(false)
-  const containerAnimate = {
-    full: {
-      height: loaded ? '100%' : '150px',
-      width: loaded ? '100%' : '150px',
-      opacity: loaded ? 1 : 0 ,
-      transition: {
-        stagger: 0.5,
-        ease: 'easeInOut',
-        duration: 0.75,
-      },
-    },
-  }
+  const scope = imageAnimation(loaded)
   return (
-    <>
+    <div
+      id="container"
+      ref={scope}
+      className={`flex flex-col items-center justify-center`}
+    >
       <div
         className={`relative flex flex-col max-h-90 max-w-90 min-w-[150px] min-h-[150px] bg-white p-4`}
       >
@@ -38,11 +52,7 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
             </Link>
           )}
         </div>
-        <motion.div
-          className={'h-full w-full'}
-          animate="full"
-          variants={containerAnimate}
-        >
+        <div id="image" className={'h-full w-full'} ref={scope}>
           <Image
             priority={true}
             className="h-full w-full"
@@ -55,14 +65,9 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
               setLoaded(true)
             }}
           />
-        </motion.div>
+        </div>
       </div>
-      <motion.div
-        className={loaded === true ? `relative max-h-[10%] w-auto` : `hidden`}
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ ease: 'easeInOut', duration: 2 }}
-      >
+      <div id="caption" className={`relative max-h-[10%] w-auto`}>
         <p
           className={
             modal == true ? `text-lg text-white` : `text-lg text-black`
@@ -70,7 +75,7 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
         >
           {photo.customMetadata.Caption}
         </p>
-      </motion.div>
-    </>
+      </div>
+    </div>
   )
 }
