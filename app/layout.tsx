@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Metadata, Viewport } from 'next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 config.autoAddCss = false
 
@@ -25,6 +26,7 @@ export default function RootLayout(props: LayoutProps) {
       <body>
         {props.children}
         {props.modal}
+        <SpeedInsights />
       </body>
     </html>
   )
