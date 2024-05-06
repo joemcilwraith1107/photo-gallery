@@ -3,7 +3,9 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/react'
+import { ThemeProvider } from '@components/themeProvider'
+import { Theme } from '@radix-ui/themes'
 
 config.autoAddCss = false
 
@@ -15,20 +17,29 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewPort: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
+export function generateViewPort() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  }
 }
 
 export default function RootLayout(props: LayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        {props.children}
-        {props.modal}
-        <SpeedInsights />
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          disableTransitionOnChange
+        >
+          <Theme accentColor="jade">
+            {props.children}
+            {props.modal}
+            <SpeedInsights />
+            <Analytics />
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   )

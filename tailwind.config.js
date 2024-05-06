@@ -1,45 +1,37 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      height: {
-        '300': '300px',
-        'screen-80': '80%'
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-      width: {
-        '300': '300px',
-        'screen-80': '80%'
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
-      maxHeight: {
-        '90': '90vh'
-      },
-      maxWidth: {
-        '90': '90vw'
-      },
-      padding: {
-        '1/1': '100%',
-      },
-      inset: {
-        '1/10': '10%',
-      },
-      gridTemplateColumns: {
-        'photo': 'repeat(auto-fill, minmax(300px, 300px))',
-        '12': 'repeat(12, minmax(0, 1fr))',
-      },
-      gridTemplateRows: {
-        '12': 'repeat(12, minmax(0, 1fr))'
-      },
-      gridRow: {
-        'span-11': 'span 11 / span 11'
-      },
-      flexBasis: {
-        'content': 'content'
-      }
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }

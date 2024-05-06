@@ -1,5 +1,7 @@
 'use client';
 
+import { ChevronUpIcon } from '@radix-ui/react-icons';
+import { Button } from '@radix-ui/themes';
 import { useCallback, useState } from 'react'
 import { useEffect } from 'react'
 
@@ -22,22 +24,17 @@ export default function ScrollToTop() {
   }, [checkScrollTop])
 
   const iconClass =
-    'self-center fixed align-middle justify-center opacity-50 z-50 bg-gray-600 rounded-2xl hover:opacity-90 transition-opacity duration-500 bottom-28 right-8 w-14 h-14 md:bottom-28 md:right-10 md:w-20 md:h-20 2xl:right-20'
+    'fixed fixed bottom-32 right-14 items-center justify-center lg:h-14 lg:w-14 h-10 w-10'
 
   return (
-    <div
-      className={
+      <Button variant="classic" className={
         showScroll == true
-          ? `animate-fadeIn flex ${iconClass}`
+          ? `animate-fadeIn flex ${iconClass} `
           : `animate-fadeOut hidden ${iconClass}`
       }
-    >
-      <FontAwesomeIcon
-        icon={faArrowUp}
-        className="self-center text-xl md:text-4xl "
-        color="white"
         onClick={scrollTop}
-      />
-    </div>
+      >
+        <ChevronUpIcon className='h-8 w-8 lg:h-10 lg:w-10' />
+      </Button>
   )
 }

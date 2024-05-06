@@ -23,6 +23,7 @@ export default function Gallery({ photos, tags }: Params) {
       <AnimatePresence>
         <ImageGrid filteredPhotos={filteredPhotos} />
       </AnimatePresence>
+
     </>
   )
 }
