@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { motion } from 'framer-motion'
 
 export default function Modal({ children }: ModalProps) {
   const overlay = useRef(null)
