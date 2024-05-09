@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
-import getAllPhotoData from '@lib/getAllPhotoData'
-import getPhotoData from '@lib/getPhotoData'
+import getAllPhotoData from '@/lib/getAllPhotoData'
+import getPhotoData from '@/lib/getPhotoData'
 import { notFound } from 'next/navigation'
-import ImageDisplay from '@components/ImageDisplay'
-import Modal from '@components/Modal'
+import ImageDisplay from '@/components/ImageDisplay'
+import Modal from '@/components/Modal'
 
 type Params = {
   params: {

@@ -2,8 +2,8 @@
 
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import Filters from './Filters'
-import ImageGrid from './ImageGrid'
+import Filters from '@/components/Filters'
+import ImageGrid from '@/components/ImageGrid'
 
 type Params = {
   photos: ImagesData[]

@@ -31,6 +31,27 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      height: {
+        '300': '300px',
+      },
+      width: {
+        '300': '300px',
+      },
+      maxHeight: {
+        '90': '90vh'
+      },
+      maxWidth: {
+        '90': '90vw'
+      },
+      padding: {
+        '1/1': '100%',
+      },
+      gridTemplateColumns: {
+        'photo': 'repeat(auto-fill, minmax(300px, 300px))',
+      },
+      flexBasis: {
+        'content': 'content'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

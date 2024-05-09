@@ -1,8 +1,8 @@
-import getAllPhotoData from '@lib/getAllPhotoData'
-import Gallery from '@components/Gallery'
-import getFilterData from '@lib/getFilterData'
-import ScrollToTop from '@components/ScrollToTop'
-import Footer from '@components/Footer'
+import getAllPhotoData from '@/lib/getAllPhotoData'
+import Gallery from '@/components/Gallery'
+import getFilterData from '@/lib/getFilterData'
+import ScrollToTop from '@/components/ScrollToTop'
+import Footer from '@/components/Footer'
 
 export default async function Page() {
   const photoData: Promise<ImagesData[]> = getAllPhotoData()

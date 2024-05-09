@@ -1,7 +1,7 @@
 export default function BackButton({}) {
   return (
     <div className="right-0 top-0 flex items-center p-4">
-      <div className="rounded-full bg-black/60 text-white/75 hover:bg-black hover:text-white sm:p-2 md:p-4 ">
+      <div className="rounded-full bg-black/60 text-white/75 hover:bg-black hover:text-white sm:p-1 md:p-4 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

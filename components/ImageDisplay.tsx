@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'next/link'
-import BackButton from '@components/BackButton'
+import BackButton from '@/components/BackButton'
 
 export default function ImageDisplay({ modal, photo }: ImageDisplay) {
   const [loading, setLoading] = useState(modal)

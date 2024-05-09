@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronUpIcon } from '@radix-ui/react-icons';
-import { Button } from '@radix-ui/themes';
+import { Button } from '@/components/ui/button';
 import { useCallback, useState } from 'react'
 import { useEffect } from 'react'
 
@@ -27,7 +27,7 @@ export default function ScrollToTop() {
     'fixed fixed bottom-32 right-14 items-center justify-center lg:h-14 lg:w-14 h-10 w-10'
 
   return (
-      <Button variant="classic" className={
+      <Button variant="outline" className={
         showScroll == true
           ? `animate-fadeIn flex ${iconClass} `
           : `animate-fadeOut hidden ${iconClass}`
