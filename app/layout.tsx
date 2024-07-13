@@ -1,9 +1,9 @@
-import '../styles/globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { Metadata, Viewport } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Analytics } from '@vercel/analytics/react';
+import { Metadata } from 'next'
+import '../styles/globals.css'
 
 config.autoAddCss = false
 
@@ -15,15 +15,9 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewPort: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-}
-
 export default function RootLayout(props: LayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         {props.children}
         {props.modal}

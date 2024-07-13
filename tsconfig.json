@@ -23,13 +23,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@components/*": ["components/*"],
-      "@app/*": ["app/*"],
-      "@styles": ["styles/*"]
-    },
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "next-env.d.ts",

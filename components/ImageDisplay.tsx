@@ -1,10 +1,11 @@
 'use client'
 
-import Image from 'next/image'
+import { Cross1Icon } from '@radix-ui/react-icons'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import BackButton from '@components/BackButton'
+import { useState } from 'react'
+import { Button } from './ui/button'
 
 export default function ImageDisplay({ modal, photo }: ImageDisplay) {
   const [loading, setLoading] = useState(modal)
@@ -23,8 +24,8 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
         width: loading ? '200px' : '100vw',
       }}
       transition={{
-        height: { delay: 0, duration: 1 },
-        width: { delay: 0, duration: 1 },
+        height: { delay: 0, duration: 0.5 },
+        width: { delay: 0, duration: 0.5 },
       }}
     >
       <div
@@ -34,19 +35,26 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
             : `relative max-h-90 max-w-90 min-w-[150px] min-h-[150px] bg-white p-4`
         }
       >
-        <motion.div
-          className={`absolute inset-0 mx-auto flex flex-col z-50`}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: loading ? 0 : 1,
-          }}
-          transition={{ opacity: { delay: 1, duration: 0.5 } }}
-        >
+        <motion.div className={`absolute left-4 top-4 mx-auto z-50`}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: loading ? 0 : 1,
+                  }}
+                  transition={{ opacity: { delay: 1, duration: 0.5 } }}
+                  >
           {modal ? (
-            <BackButton />
+            <Button variant="black" className="h-8 w-8 lg:h-10 lg:w-10 animate-in">
+              <Cross1Icon className="h-6 w-6 lg:h-8 lg:w-8 " />
+            </Button>
           ) : (
             <Link href="/">
-              <BackButton />
+              <Button
+                asChild
+                variant="black"
+                className="h-8 w-8 lg:h-10 lg:w-10 "
+              >
+                <Cross1Icon className="h-6 w-6 lg:h-8 lg:w-8" />
+              </Button>
             </Link>
           )}
         </motion.div>
@@ -56,7 +64,7 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
           animate={{
             opacity: loading ? 0 : 1,
           }}
-          transition={{ opacity: { delay: 1, duration: 0.5 } }}
+          transition={{ opacity: { delay: 1, duration: 0.1 } }}
         >
           <Image
             priority={true}
@@ -76,7 +84,7 @@ export default function ImageDisplay({ modal, photo }: ImageDisplay) {
         animate={{
           opacity: loading ? 0 : 1,
         }}
-        transition={{ opacity: { delay: 1, duration: 0.5 } }}
+        transition={{ opacity: { delay: 1, duration: 0.1 } }}
       >
         <p
           className={
