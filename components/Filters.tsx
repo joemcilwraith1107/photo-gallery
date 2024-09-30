@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { type Dispatch, type SetStateAction, useState } from 'react'
 
 type Params = {
   photos: ImagesData[]
@@ -18,20 +19,16 @@ export default function Filters({ photos, tags, setFilteredPhotos }: Params) {
   }
 
   const menu = tags.map((tag, index) => (
-    <button
-      key={index}
-      className={
-        filterActive === index
-          ? `${btnClass} text-black underline`
-          : `${btnClass} text-gray-500`
-      }
+    <Button
+      key={tag}
+      variant="link"
       value={`${tag}`}
       onClick={async () => {
         await filteredList(tag, index)
       }}
     >
       <p>{`${tag}`}</p>
-    </button>
+    </Button>
   ))
 
   return (
