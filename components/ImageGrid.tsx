@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, GridButton } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -78,6 +78,7 @@ export default function ImageGrid({ images }: GalleryProps) {
 			</div>
 
 			<Dialog open={isModalOpen} onOpenChange={closeModal}>
+				<DialogTitle>{selectedImage?.customMetadata.Caption}</DialogTitle>
 				<DialogContent
 					className="max-w-[90vw] max-h-[90vh] h-auto w-auto p-0 overflow-hidden"
 					hidden
