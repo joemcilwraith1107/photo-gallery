@@ -1,9 +1,8 @@
 'use client'
 
-import { AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
 import Filters from '@/components/Filters'
-import ImageGrid from '@/components/ImageGrid'
+import { useState } from 'react'
+import ImageGallery from './ImageGallery'
 
 type Params = {
   photos: ImagesData[]
@@ -20,9 +19,9 @@ export default function Gallery({ photos, tags }: Params) {
         tags={tags}
         setFilteredPhotos={setFilteredPhotos}
       />
-      <AnimatePresence>
-        <ImageGrid filteredPhotos={filteredPhotos} />
-      </AnimatePresence>
+
+        <ImageGallery images={filteredPhotos} />
+
 
     </>
   )
