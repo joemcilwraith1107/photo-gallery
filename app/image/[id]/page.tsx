@@ -1,4 +1,3 @@
-import getAllPhotoData from "@/lib/getAllPhotoData";
 import getPhotoData from "@/lib/getPhotoData";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +13,7 @@ export default async function ImagePage({
 	}
 
 	return (
-		<div className="relative min-h-screen flex items-center justify-center bg-gray-900">
+		<div className="relative min-h-screen flex items-center justify-center bg-white">
 			<Link
 				href="/"
 				className="absolute top-4 left-4 px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition-colors"
@@ -31,13 +30,4 @@ export default async function ImagePage({
 			/>
 		</div>
 	);
-}
-
-export async function generateStaticParams() {
-	const photoData: Promise<ImagesData[]> = getAllPhotoData();
-	const photos: ImagesData[] = await photoData;
-
-	return photos.map((photo) => ({
-		id: photo.fileId,
-	}));
 }

@@ -24,6 +24,7 @@ const buttonVariants = cva(
 					"bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
 				close:
 					"absolute top-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-white",
+				grid: "relative aspect-square w-full overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
 			},
 			size: {
 				default: "h-10 lg:px-2 lg:py-2",
@@ -44,6 +45,13 @@ export interface ButtonProps
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 }
+const GridButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, asChild = false, ...props }, ref) => {
+		const Comp = asChild ? Slot : "button";
+		return <Comp className={className} ref={ref} {...props} />;
+	},
+);
+GridButton.displayName = "Button";
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	({ className, variant, size, asChild = false, ...props }, ref) => {
@@ -59,4 +67,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button, GridButton, buttonVariants };
