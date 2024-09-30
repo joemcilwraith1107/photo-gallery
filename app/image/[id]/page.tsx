@@ -1,7 +1,27 @@
+import getAllPhotoData from "@/lib/getAllPhotoData";
 import getPhotoData from "@/lib/getPhotoData";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({
+	params,
+}: { params: { id: string } }): Promise<Metadata> {
+	const photoData: Promise<PhotoData> = getPhotoData(params.id);
+	const photo: PhotoData = await photoData;
+
+	if (!photo.name) {
+		return {
+			title: "Image not found",
+		};
+	}
+
+	return {
+		title: photo.name,
+		description: photo.customMetadata.Caption,
+	};
+}
 
 export default async function ImagePage({
 	params,
@@ -30,4 +50,13 @@ export default async function ImagePage({
 			/>
 		</div>
 	);
+}
+
+export async function generateStaticParams() {
+	const photoData: Promise<ImagesData[]> = getAllPhotoData();
+	const photos: ImagesData[] = await photoData;
+
+	return photos.map((photo) => ({
+		id: photo.fileId,
+	}));
 }

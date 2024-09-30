@@ -1,7 +1,3 @@
-type ModalProps = {
-	children: any;
-};
-
 type LayoutProps = {
 	children: React.ReactNode;
 	modal: React.ReactNode;
