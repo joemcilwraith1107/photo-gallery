@@ -7,11 +7,7 @@ type Params = {
 	setFilteredPhotos: Dispatch<SetStateAction<ImagesData[]>>;
 };
 
-export default async function Filters({
-	photos,
-	tags,
-	setFilteredPhotos,
-}: Params) {
+export default function Filters({ photos, tags, setFilteredPhotos }: Params) {
 	async function filteredList(tag: string, index: number) {
 		const filteredPhotos = photos.filter((photo) => photo.tags.includes(tag));
 		index === 0 ? setFilteredPhotos(photos) : setFilteredPhotos(filteredPhotos);
