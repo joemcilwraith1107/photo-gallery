@@ -1,9 +1,9 @@
 type LayoutProps = {
 	children: React.ReactNode;
+	modal: React.ReactNode;
 };
 
-type ImageDisplay = {
-	modal: boolean;
+type PhotoDisplay = {
 	photo: PhotoData;
 };
 

@@ -1,7 +1,7 @@
 import ImageContent from "@/components/ImageContent";
+import Modal from "@/components/Modal";
 import getPhotoData from "@/lib/getPhotoData";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -28,22 +28,14 @@ export async function generateMetadata({
 	};
 }
 
-export default async function ImagePage({ params: { id } }: Props) {
-	const photo: PhotoData = await getPhotoData(id);
+export default async function Page({ params: { id } }: Props) {
+	const photoData: Promise<PhotoData> = getPhotoData(id);
+	const photo: PhotoData = await photoData;
 
-	if (!photo) {
-		notFound();
-	}
-
+	if (!photo.url) return notFound();
 	return (
-		<div className="relative min-h-screen flex items-center justify-center bg-white">
-			<Link
-				href="/"
-				className="absolute top-4 left-4 px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition-colors"
-			>
-				Back to Gallery
-			</Link>
-			<ImageContent photo={photo} />
-		</div>
+		<Modal>
+			<ImageContent modal={true} photo={photo} />
+		</Modal>
 	);
 }

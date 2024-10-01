@@ -19,6 +19,7 @@ export default function RootLayout(props: LayoutProps) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body>
+				{props.modal}
 				{props.children}
 				<SpeedInsights />
 				<Analytics />
