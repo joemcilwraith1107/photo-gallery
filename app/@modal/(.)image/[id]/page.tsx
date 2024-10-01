@@ -35,7 +35,7 @@ export default async function Page({ params: { id } }: Props) {
 	if (!photo.url) return notFound();
 	return (
 		<Modal>
-			<ImageContent modal={true} photo={photo} />
+			<ImageContent photo={photo} />
 		</Modal>
 	);
 }

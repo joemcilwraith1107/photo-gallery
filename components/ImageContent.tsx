@@ -4,10 +4,9 @@ import Image from "next/image";
 
 type Params = {
 	photo: PhotoData;
-	modal: boolean;
 };
 
-export default function ImageContent({ modal, photo }: Params) {
+export default function ImageContent({ photo }: Params) {
 	const calculateImageDimensions = (photo: PhotoData) => {
 		const maxWidth = window.innerWidth * 0.9;
 		const maxHeight = window.innerHeight * 0.9;

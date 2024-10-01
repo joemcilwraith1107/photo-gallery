@@ -12,9 +12,6 @@ const config = {
 		],
 		loader: "default",
 	},
-	experimental: {
-		missingSuspenseWithCSRBailout: false
-	}
 };
 
 export default config;
