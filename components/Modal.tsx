@@ -1,46 +1,45 @@
-'use client'
+"use client";
 
-import { useRouter } from 'next/navigation'
-import { useCallback, useRef, useState } from 'react'
-import { Dialog } from '@headlessui/react'
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function Modal({ children }: ModalProps) {
-  const overlay = useRef(null)
-  const wrapper = useRef(null)
-  const panel = useRef(null)
-  const router = useRouter()
-  const [isOpen, setIsOpen] = useState(true)
+export default function Modal({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const router = useRouter();
 
-  const onDismiss = useCallback(() => {
-    setIsOpen(false)
-    router.back()
-  }, [setIsOpen, router])
-
-  return (
-    <Dialog
-      open={isOpen}
-      onClose={() => {
-        onDismiss()
-      }}
-    >
-      <div
-        ref={overlay}
-        className="fixed bottom-0 left-0 right-0 top-0 bg-black/60"
-      />
-      <div
-        ref={wrapper}
-        className="fixed inset-0 flex items-center justify-center p-4"
-      >
-        <Dialog.Panel
-          ref={panel}
-          onClick={() => {
-            onDismiss()
-          }}
-          className="flex h-full w-full flex-col items-center justify-center"
-        >
-          {children}
-        </Dialog.Panel>
-      </div>
-    </Dialog>
-  )
+	const handleOpenChange = () => {
+		router.back();
+	};
+	return (
+		<Dialog defaultOpen={true} open={true} onOpenChange={handleOpenChange}>
+			<DialogHeader>
+				<DialogTitle>
+					<VisuallyHidden.Root>Image Modal</VisuallyHidden.Root>
+				</DialogTitle>
+			</DialogHeader>
+			<DialogContent className="max-w-[90vw] max-h-[90vh] h-auto w-auto p-1 overflow-hidden">
+				<div className="relative w-full h-full flex flex-col items-center justify-center">
+					{children}
+					<DialogClose
+						className="absolute top-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 focus:outline-none focus:ring-1 focus:ring-white"
+						aria-label="Close modal"
+					>
+						<X className="h6 w-6" />
+						<span className="sr-only">Close</span>
+					</DialogClose>
+				</div>
+			</DialogContent>
+		</Dialog>
+	);
 }

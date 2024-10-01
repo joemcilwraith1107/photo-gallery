@@ -1,41 +1,31 @@
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/image";
+import Link from "next/link";
 
 type GalleryProps = {
-  filteredPhotos: ImagesData[]
-}
-export default function ImageGrid({ filteredPhotos }: GalleryProps) {
+	images: ImagesData[];
+};
 
-  return (
-    <div className="container mx-auto mb-4">
-      <div className="grid grid-cols-photo justify-center gap-2">
-        {filteredPhotos &&
-          filteredPhotos.map((photo, index) => (
-            <motion.div
-              key={photo.fileId}
-              className={'relative h-300 w-300 justify-self-center'}
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                opacity: { ease: 'linear', duration: 1 },
-                layout: { duration: 0.7 },
-              }}
-            >
-              <Link href={`photos/${photo.fileId}`}>
-                <Image
-                  src={photo.url}
-                  fill={true}
-                  className={'object-cover'}
-                  alt={`${photo.customMetadata.Caption}`}
-                  sizes="320px"
-                />
-              </Link>
-            </motion.div>
-          ))}
-      </div>
-    </div>
-  )
+export default function ImageGrid({ images }: GalleryProps) {
+	return (
+		<div className="container mx-auto px-4 py-8">
+			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+				{images.map((image) => (
+					<div
+						key={image.fileId}
+						className="relative aspect-square w-full overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+					>
+						<Link href={`/image/${image.fileId}`}>
+							<Image
+								src={image.url}
+								alt={image.customMetadata.Caption}
+								fill
+								className="object-cover transition-transform duration-300 hover:scale-110"
+								sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+							/>
+						</Link>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 }
