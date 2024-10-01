@@ -28,7 +28,7 @@ export default function Modal({
 					<VisuallyHidden.Root>Image Modal</VisuallyHidden.Root>
 				</DialogTitle>
 			</DialogHeader>
-			<DialogContent className="max-w-[90vw] max-h-[90vh] h-auto w-auto p-0 overflow-hidden">
+			<DialogContent className="max-w-[90vw] max-h-[90vh] h-auto w-auto p-1 overflow-hidden">
 				<div className="relative w-full h-full flex flex-col items-center justify-center">
 					{children}
 					<DialogClose
