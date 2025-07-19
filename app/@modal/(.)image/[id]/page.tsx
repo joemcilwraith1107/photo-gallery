@@ -5,35 +5,45 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 type Props = {
-	params: {
+	params: Promise<{
 		id: string;
-	};
+	}>;
 };
 
-export async function generateMetadata({
-	params: { id },
-}: Props): Promise<Metadata> {
-	const photoData: Promise<PhotoData> = getPhotoData(id);
-	const photo: PhotoData = await photoData;
+export async function generateMetadata(props: Props): Promise<Metadata> {
+    const params = await props.params;
 
-	if (!photo.name) {
+    const {
+        id
+    } = params;
+
+    const photoData: Promise<PhotoData> = getPhotoData(id);
+    const photo: PhotoData = await photoData;
+
+    if (!photo.name) {
 		return {
 			title: "Image not found",
 		};
 	}
 
-	return {
+    return {
 		title: photo.name,
 		description: photo.customMetadata.Caption,
 	};
 }
 
-export default async function Page({ params: { id } }: Props) {
-	const photoData: Promise<PhotoData> = getPhotoData(id);
-	const photo: PhotoData = await photoData;
+export default async function Page(props: Props) {
+    const params = await props.params;
 
-	if (!photo.url) return notFound();
-	return (
+    const {
+        id
+    } = params;
+
+    const photoData: Promise<PhotoData> = getPhotoData(id);
+    const photo: PhotoData = await photoData;
+
+    if (!photo.url) return notFound();
+    return (
 		<Modal>
 			<ImageContent photo={photo} />
 		</Modal>

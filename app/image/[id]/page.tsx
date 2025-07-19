@@ -5,37 +5,47 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type Props = {
-	params: {
+	params: Promise<{
 		id: string;
-	};
+	}>;
 };
 
-export async function generateMetadata({
-	params: { id },
-}: Props): Promise<Metadata> {
-	const photoData: Promise<PhotoData> = getPhotoData(id);
-	const photo: PhotoData = await photoData;
+export async function generateMetadata(props: Props): Promise<Metadata> {
+    const params = await props.params;
 
-	if (!photo.name) {
+    const {
+        id
+    } = params;
+
+    const photoData: Promise<PhotoData> = getPhotoData(id);
+    const photo: PhotoData = await photoData;
+
+    if (!photo.name) {
 		return {
 			title: "Image not found",
 		};
 	}
 
-	return {
+    return {
 		title: photo.name,
 		description: photo.customMetadata.Caption,
 	};
 }
 
-export default async function ImagePage({ params: { id } }: Props) {
-	const photo: PhotoData = await getPhotoData(id);
+export default async function ImagePage(props: Props) {
+    const params = await props.params;
 
-	if (!photo) {
+    const {
+        id
+    } = params;
+
+    const photo: PhotoData = await getPhotoData(id);
+
+    if (!photo) {
 		notFound();
 	}
 
-	return (
+    return (
 		<div className="relative min-h-screen flex items-center justify-center bg-white">
 			<Link
 				href="/"
