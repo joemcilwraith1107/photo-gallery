@@ -12,7 +12,7 @@ export default function ImageGrid({ images }: GalleryProps) {
 				{images.map((image) => (
 					<div
 						key={image.fileId}
-						className="relative aspect-square w-full overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+						className="relative aspect-square w-full overflow-hidden rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
 					>
 						<Link href={`/image/${image.fileId}`}>
 							<Image

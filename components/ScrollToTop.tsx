@@ -32,7 +32,7 @@ export default function ScrollToTop({ showDistance = 300 }) {
 			{showScroll && (
 				<Button
 					variant="outline"
-					className="fixed bottom-32 right-14 2xl:right-40 p-2 rounded-full text-primary-foreground shadow-lg transition-opacity duration-300 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+					className="fixed bottom-32 right-14 2xl:right-40 p-2 rounded-full text-primary-foreground shadow-lg transition-opacity duration-300 hover:bg-primary/90 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
 					onClick={scrollToTop}
 					aria-label="Scroll to top"
 				>
