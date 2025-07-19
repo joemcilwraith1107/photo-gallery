@@ -1,5 +1,5 @@
+import { faFlickr, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faFlickr } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
 	return (

@@ -1,5 +1,8 @@
 "use client";
 
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
 	Dialog,
 	DialogClose,
@@ -7,15 +10,8 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { X } from "lucide-react";
-import { useRouter } from "next/navigation";
 
-export default function Modal({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function Modal({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
 
 	const handleOpenChange = () => {

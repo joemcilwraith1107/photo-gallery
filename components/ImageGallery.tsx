@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Filters from "@/components/Filters";
 import ImageGrid from "@/components/ImageGrid";
-import { useState } from "react";
 
 type Params = {
 	photos: ImagesData[];
