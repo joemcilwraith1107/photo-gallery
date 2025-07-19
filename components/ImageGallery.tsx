@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Filters from "@/components/Filters";
 import ImageGrid from "@/components/ImageGrid";
+import type { ImagesData } from "@/types";
 
 type Params = {
 	photos: ImagesData[];

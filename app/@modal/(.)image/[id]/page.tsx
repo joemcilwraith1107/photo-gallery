@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ImageContent from "@/components/ImageContent";
 import Modal from "@/components/Modal";
 import getPhotoData from "@/lib/getPhotoData";
+import type { PhotoData } from "@/types";
 
 type Props = {
 	params: Promise<{

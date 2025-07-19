@@ -1,5 +1,6 @@
 "use client";
 
+import type { PhotoData } from "@/types";
 import Image from "next/image";
 
 type Params = {

@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
+import type { ImagesData } from "@/types";
 
 type Params = {
 	photos: ImagesData[];

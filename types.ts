@@ -1,13 +1,13 @@
-type LayoutProps = {
+export type LayoutProps = {
 	children: React.ReactNode;
 	modal: React.ReactNode;
 };
 
-type PhotoDisplay = {
+export type PhotoDisplay = {
 	photo: PhotoData;
 };
 
-type ImagesData = {
+export type ImagesData = {
 	type: Type;
 	name: string;
 	createdAt: Date;
@@ -31,7 +31,7 @@ type ImagesData = {
 	mime: MIME;
 };
 
-type PhotoData = {
+export type PhotoData = {
 	type: string;
 	name: string;
 	createdAt: Date;
@@ -55,18 +55,18 @@ type PhotoData = {
 	mime: string;
 };
 
-interface CustomMetadata {
+export interface CustomMetadata {
 	"Aspect Ratio": AspectRatio;
 	Caption: string;
 }
 
-enum AspectRatio {
+export enum AspectRatio {
 	Landscape = "Landscape",
 	Portrait = "Portrait",
 	Square = "Square",
 }
 
-interface EmbeddedMetadata {
+export interface EmbeddedMetadata {
 	Make: string;
 	Model: string;
 	ModifyDate: string;
@@ -88,40 +88,40 @@ interface EmbeddedMetadata {
 	DateTimeCreated: Date;
 }
 
-enum FileType {
+export enum FileType {
 	Image = "image",
 }
 
-enum MIME {
+export enum MIME {
 	ImageJPEG = "image/jpeg",
 }
 
-enum Type {
+export enum Type {
 	File = "file",
 }
 
-interface VersionInfo {
+export interface VersionInfo {
 	id: string;
 	name: Name;
 }
 
-enum Name {
+export enum Name {
 	Version1 = "Version 1",
 }
 
-interface CustomMetadata {
-	"Aspect Ratio": string;
+export interface CustomMetadata {
+	"Aspect Ratio": AspectRatio;
 	Caption: string;
 }
 
-interface EmbeddedMetadata {
+export interface EmbeddedMetadata {
 	Make: string;
 	Model: string;
 	ModifyDate: string;
 	FNumber: number;
 	ISO: number;
 	ApertureValue: number;
-	ExposureCompensation: number;
+	ExposureCompensation?: number;
 	MeteringMode: string;
 	Flash: string;
 	WhiteBalance: string;
@@ -136,7 +136,7 @@ interface EmbeddedMetadata {
 	DateTimeCreated: Date;
 }
 
-interface VersionInfo {
+export interface VersionInfo {
 	id: string;
-	name: string;
+	name: Name;
 }

@@ -1,4 +1,5 @@
 import getAllPhotoData from "@/lib/getAllPhotoData";
+import type { ImagesData } from "@/types";
 
 export default async function getFilterData() {
 	const photoData: Promise<ImagesData[]> = getAllPhotoData();
