@@ -1,6 +1,6 @@
-import type { ImagesData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import type { ImagesData } from "@/types";
 
 type GalleryProps = {
 	images: ImagesData[];
