@@ -5,6 +5,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import type { LayoutProps } from "@/types";
+import { Montserrat } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({subsets:['latin'],variable:'--font-sans'});
+
 
 config.autoAddCss = false;
 
@@ -18,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: LayoutProps) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning className={cn("font-sans", montserrat.variable)}>
 			<body>
 				{props.modal}
 				{props.children}
