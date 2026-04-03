@@ -1,15 +1,8 @@
 "use client";
 
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
@@ -19,12 +12,10 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 	};
 	return (
 		<Dialog defaultOpen={true} open={true} onOpenChange={handleOpenChange}>
-			<DialogHeader>
-				<DialogTitle>
-					<VisuallyHidden.Root>Image Modal</VisuallyHidden.Root>
-				</DialogTitle>
-			</DialogHeader>
-			<DialogContent className="max-w-90 max-h-90 h-auto w-auto p-1 overflow-hidden">
+			<DialogContent
+				className="max-w-90 max-h-90 h-auto w-auto p-1 overflow-hidden"
+				showCloseButton={false}
+			>
 				<div className="relative w-full h-full flex flex-col items-center justify-center">
 					{children}
 					<DialogClose

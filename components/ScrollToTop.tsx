@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronUpIcon } from "@radix-ui/react-icons";
+import { ChevronUpIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -28,12 +28,13 @@ export default function ScrollToTop({ showDistance = 300 }) {
 		<>
 			{showScroll && (
 				<Button
-					variant="outline"
-					className="fixed bottom-32 right-14 2xl:right-40 p-2 rounded-full text-primary-foreground shadow-lg transition-opacity duration-300 hover:bg-primary/90 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
+					variant="ghost"
+					size={"icon-xl"}
+					className="fixed bottom-32 right-20 2xl:right-80 p-2 rounded-full text-secondary-foreground shadow-lg transition-opacity duration-300 hover:ring-2 hover:ring-primary focus:outline-hidden focus:ring-2 focus:ring-primary"
 					onClick={scrollToTop}
 					aria-label="Scroll to top"
 				>
-					<ChevronUpIcon className="h-6 w-6" />
+					<ChevronUpIcon className="size-12 text-primary" />
 				</Button>
 			)}
 		</>
