@@ -20,8 +20,6 @@
 
 	--padding-1\/1: 100%;
 
-	--grid-template-columns-photo: repeat(auto-fill, minmax(300px, 300px));
-
 	--flex-basis-content: content;
 
 	@keyframes accordion-down {
